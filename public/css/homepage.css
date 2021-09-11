@@ -88,4 +88,21 @@ nav .submenu{
     justify-content: space-around;
 
 }
-
+.box-4col{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.box-4col .box{
+   width: 25%;
+   display: inline-block;
+}
+.box-in {
+    text-align: center;
+    padding: 20px;
+    color: black;
+}
+.box-in a{
+    text-decoration: none;
+    color: black;
+}
