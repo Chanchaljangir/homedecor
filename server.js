@@ -261,6 +261,7 @@ app.get('/addproducttype',function (req, res) {
 });
 
 app.get('/editproduct',function(req,res){
+  console.log("req.query.pid",req.params);
   var param=[req.query,
     req.query.pid]
   
