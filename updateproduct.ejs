@@ -1,68 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/addproduct.css">
-    <link rel="stylesheet" href="./css/homepage.css">
-    <style type="text/css">
-        body{
-            background-image: url(images/dark.jfif);
-            background-size: cover;
-            background-attachment: fixed; 
-            background-position: center;   
-        }
-        .maincontainer{
-            margin-top: 100px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/addproduct.css">
+  <link rel="stylesheet" href="./css/homepage.css">
+  <style type="text/css">
+    body {
+      background-image: url(images/dark.jfif);
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    .maincontainer {
+      margin-top: 100px;
+    }
+  </style>
 
 </head>
+
 <body>
   <header>
     <%- include('./adminheader'); %>
-</header>
-    <div class="maincontainer">
-        <div class="product-title"><h1>Product Details </h1></div>
-        <div class="input">
-            <form action="/editproduct" enctype="multipart/form-data" method="GET">
-                <label>Category</label>
-                  <select class="option" name="category"> 
-                      <option disabled="disabled" selected="selected">--Choose option--</option>
-                      <option value="homedecorproducts">Home Decor Products</option>
-                      <option value="homeaccessoies">Home Accessories</option>
-                  </select>
-                <label>Product Type</label>
-                  <select class="option" name="producttype"> 
-                      <option disabled="disabled" selected="selected">--Choose option--</option>
-                      <option value="homedecorproducts">Home Decor Products</option>
-                      <option value="homeaccessoies">Home Accessories</option>
-                  </select>
-               
-                <label>Size</label>
-                <select class="option" name="size"> 
-                  <option disabled="disabled" selected="selected">--Choose option--</option>
-                  <option value="double">Double</option>
-                  <option value="small">Small</option>
-                  <option value="kingsize">King Size</option>
-                  <option value="queensize">Queen Size</option>
-                </select>
-                
-                <label>Comapany</label>
-                <input type="text" name="company" placeholder=" " />
-                <label>Price</label>
-                <input type="text" name="price" placeholder="Add discription here" />
-                <label>Image Upload</label>
-                <input type="file" name="imgupload" required/>
-                <button type="submit">Submit</button>
-              </form>
-       </div>
-        
+  </header>
+  <div class="maincontainer">
+    <div class="product-title">
+      <h1>Product Details </h1>
     </div>
-    <script>
-      
-    </script>
+    <div class="input">
+      <form action="/editproduct?pid=9" enctype="multipart/form-data" method="POST">
+        <label>Category</label>
+        <select class="option" name="category">
+          <option disabled="disabled" selected="selected">--Choose option--</option>
+          <option value="1">Home Decor Products</option>
+          <option value="2">Home Accessories</option>
+        </select>
+        <label>Product Type</label>
+        <select class="option" name="producttype">
+          <option disabled="disabled" selected="selected">--Choose option--</option>
+          <% results.forEach(function(rs){ %>
+            <option value="<%=rs.producttypeid %>">
+              <%=rs.producttypename %>
+            </option>
+            <%})%>
+        </select>
+
+        <label>Size</label>
+        <select class="option" name="size">
+          <option disabled="disabled" selected="selected">--Choose option--</option>
+          <option value="1">Double</option>
+          <option value="2">Small</option>
+          <!-- <option value="3">King Size</option>
+                  <option value="4">Queen Size</option> -->
+        </select>
+
+        <label>Comapany</label>
+        <input type="text" name="company" placeholder=" " />
+        <label>Price</label>
+        <input type="text" name="price" placeholder="Add discription here" />
+        <label>Image Upload</label>
+        <input type="file" name="imgupload" required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+  </div>
+  <script>
+
+  </script>
 </body>
+
 </html>

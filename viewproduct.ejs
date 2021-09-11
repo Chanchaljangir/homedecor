@@ -78,8 +78,8 @@
             <td>£ <%=rs.price %>
             </td>
             <td><img src="/<%=rs.productimgurl %>" height="150px" width="150px" class="img5"></td>
-            <td><a href="updateproduct?pid=<%=rs.productid %>"><button class="edit"><img src="./images/edit icon.jpg" width="20" height="20"
-                    alt="" class="img"></button></a></td>
+            <td><a href="updateproduct?pid=<%=rs.productid %>"><button class="edit"><img src="./images/edit icon.jpg"
+                    width="20" height="20" alt="" class="img"></button></a></td>
             <td><a href="deleteproduct" onclick='return checkdelete()'><button class="delete"><img
                     src="./images/deleteicon.png" width="20" height="20" alt="" class="img"></button></a></td>
 
@@ -94,7 +94,7 @@
     function checkdelete() {
       return confirm('Are you sure you want to DELETE this record');
     }
-    function updateProduct(id){
+    function updateProduct(id) {
       var productId = id;
       alert(id);
     }
