@@ -4,6 +4,7 @@ const app = express();
 const multer = require("multer");
 const bodyParser = require('body-parser');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 const port=process.env.PORT||3000
 const mysql = require('mysql2');
 imgurl="";
@@ -267,7 +268,7 @@ app.get('/updateproduct',function (req, res){
   res.render(__dirname+'/updateproduct.ejs');
 });
 
-app.get('/submitproducttype',function (req, res) {
+app.get('/submitproducttype',function (req, res) { 
   let data = {producttypename: req.query.producttypename, categoryid: req.query.category, sizeid: req.query.size};
   let sql = "INSERT INTO producttype SET ?";
   let query = conn.query(sql, data,function(err, results){
@@ -345,7 +346,17 @@ app.get('/orderdetails2',function(req,res){
 });*/
 
 app.get('/viewproduct',function (req, res){  
-  res.render(__dirname+"/viewproduct");
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+  let query = conn.query(sql, function(err, myresults)  {
+    if(err) throw err;
+    res.render(__dirname+'/viewproduct.ejs',{
+      results: myresults
+      
+    });
+    // console.log("product result ", myresults);
+  });
 });
 
 app.get('/viewcustomer',function (req, res){  

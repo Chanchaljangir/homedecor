@@ -1,42 +1,44 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>View product</title>
-        <link rel="stylesheet" href="./css/homepage.css">
-        <link rel="stylesheet" href="./css/viewproduct.css">
-        <style type="text/css">
-            body{
-                background-image: url(images/dark.jfif);
-                background-size: cover;
-                background-attachment: fixed; 
-                background-position: center;   
-            }
-            </style>
-    </head>
-    <body>
-        <header>
-            <%- include('./adminheader'); %>
-        </header>
-        <div class="table">
-        <table class="table table-striped" id="mytable" border="1">
-            <thead>
-                <h2>Details of Ordered Products</h2>
-                <tr height="10px" width="20px">
-                  <th>Category</th>
-                  <th>Product Type</th>
-                  <th>Size</th>
-                  <th>Company</th>
-                  <th>Price</th>
-                  <th>Image</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-              <tr height="10px" width="20px">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View product</title>
+  <link rel="stylesheet" href="./css/homepage.css">
+  <link rel="stylesheet" href="./css/viewproduct.css">
+  <style type="text/css">
+    body {
+      background-image: url(images/dark.jfif);
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <%- include('./adminheader'); %>
+  </header>
+  <div class="table">
+    <table class="table table-striped" id="mytable" border="1">
+      <thead>
+        <h2>Details of Ordered Products</h2>
+        <tr height="10px" width="20px">
+          <th>Category</th>
+          <th>Product Type</th>
+          <th>Size</th>
+          <th>Company</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- <tr height="10px" width="20px">
                 <td>Home Decor Products</td>
                 <td>bedsheet</td>
                 <td>double</td>
@@ -46,9 +48,9 @@
                 <td><a href="updateproduct"><button class="edit"><img src="./images/edit icon.jpg" width="20" height="20" alt="" class="img"></button></a></td>
                 <td><a href="deleteproduct"  onclick='return checkdelete()'><button class="delete"><img src="./images/deleteicon.png"width="20" height="20" alt="" class="img"></button></a></td>
 
-              </tr>
+              </tr> -->
 
-              <tr height="10px" width="20px">
+        <!-- <tr height="10px" width="20px">
                 <td>Home Decor Products</td>
                 <td>Duvet Cover</td>
                 <td>double</td>
@@ -58,21 +60,43 @@
                 <td><a href="updateproduct"><button class="edit"><img src="./images/edit icon.jpg" width="20" height="20" alt="" class="img"></button></a></td>
                 <td><a href="deleteproduct"  onclick='return checkdelete()'><button class="delete"><img src="./images/deleteicon.png"width="20" height="20" alt="" class="img"></button></a></td>
 
-              </tr>
-              
-            </tbody>
-           </div>
-          </table>
-    
-               <script>
-                    
-                function checkdelete()
-                {
-                    return confirm('Are you sure you want to DELETE this record');
-                }
-          </script>
-         
-      
-    </body>
-</html>
+              </tr> -->
+        <% results.forEach(function(rs){ %>
+          <tr height="10px" width="20px">
+            <td>
+              <%=rs.categoryname %>
+            </td>
+            <td>
+              <%=rs.producttypename %>
+            </td>
+            <td>
+              <%=rs.sizename %>
+            </td>
+            <td>
+              <%=rs.brand %>
+            </td>
+            <td>£ <%=rs.price %>
+            </td>
+            <td><img src="/<%=rs.productimgurl %>" height="150px" width="150px" class="img5"></td>
+            <td><a href="updateproduct"><button class="edit"><img src="./images/edit icon.jpg" width="20" height="20"
+                    alt="" class="img"></button></a></td>
+            <td><a href="deleteproduct" onclick='return checkdelete()'><button class="delete"><img
+                    src="./images/deleteicon.png" width="20" height="20" alt="" class="img"></button></a></td>
 
+          </tr>
+          <%})%>
+      </tbody>
+  </div>
+  </table>
+
+  <script>
+
+    function checkdelete() {
+      return confirm('Are you sure you want to DELETE this record');
+    }
+  </script>
+
+
+</body>
+
+</html>
