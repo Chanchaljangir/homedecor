@@ -9,50 +9,60 @@
     <link rel="stylesheet" href="./css/homepage.css" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
-        body{
-            
+        body {
+
             background-size: cover;
-            background-attachment: fixed; 
-            background-position: center;   
-            background-color:cadetblue;
-            
+            background-attachment: fixed;
+            background-position: center;
+            background-color: cadetblue;
+
         }
-        
-        .img1{
+
+        .img1 {
             padding: 10px;
         }
-        .img2{
+
+        .img2 {
             padding: 10px;
         }
-        .img3{
+
+        .img3 {
             padding: 10px;
         }
-        .img4{
+
+        .img4 {
             padding: 10px;
         }
-        .img5{
+
+        .img5 {
             padding: 10px;
         }
-        .img6{
+
+        .img6 {
             padding: 10px;
         }
-        .img7{
+
+        .img7 {
             padding: 10px;
         }
-        .img8{
+
+        .img8 {
             padding: 10px;
         }
-        .img9{
+
+        .img9 {
             padding: 10px;
         }
-        .img10{
+
+        .img10 {
             padding: 10px;
         }
-        .center
-        {
-            position:center;
+
+        .center {
+            position: center;
         }
-        .btn{
+
+        .btn {
             display: inline-block;
             background: #ff523b;
             color: #fff;
@@ -63,38 +73,42 @@
             align-items: center;
         }
 
-        .btn:hover{
+        .btn:hover {
             background: #563434;
         }
 
-/*h3{
+        /*h3{
     text-align: center;
 }
 
 h4{
     text-align: center;
 }*/
-        .button{
+        .button {
             text-align: center;
-            
+
         }
 
-        .modal{
+        .modal {
             border: 1px solid black;
             width: 400px;
             height: 550px;
-            
-           
+
+
             position: fixed;
             margin-left: 500px;
             margin-top: 25px;
-           
+
             background-color: gray;
             padding: 10px;
-            
-        } 
-        
-        input[name=txtfn], input[name=txtln],input[name=txtmn],input[name=txtemail],input[name=txtpass] {
+
+        }
+
+        input[name=txtfn],
+        input[name=txtln],
+        input[name=txtmn],
+        input[name=txtemail],
+        input[name=txtpass] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -103,20 +117,19 @@ h4{
             box-sizing: border-box;
         }
 
-        
+
 
         input[name=btnregsubmit] {
             background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
 
-        #mybtn
-        {
+        #mybtn {
             padding: 2px 10px;
             color: white;
             outline: none;
@@ -124,137 +137,140 @@ h4{
             font-size: 21px;
             background-color: transparent;
         }
-        </style>
+    </style>
 
 </head>
 
 <body>
-  
+
     <header>
         <%- include('./header'); %>
     </header>
 
     <div class="modal" id="myModal">
-    
+
         <h1>Registration</h1>
         <div class="modal-content">
             <form action="/btnregsubmit" method="POST">
-            <label>First Name : </label>
-            <input type="text" name="txtfn" required><br>
-            <label>Last Name :</label>
-            <input type="text" name="txtln" required><br>
-            <label>Mobile No :</label>
-            <input type="text" name="txtmn" required><br>
-            <label>Email    : </label>
-            <input type="text" name="txtemail" required><br>
-            <label>Password :</label>
-            <input type="password" name="txtpass" required><br>
-            <input type="submit" name="btnregsubmit" value="Submit" onclick='return showInput()'>
-            <a href="back">Back</a>
-        </form>
+                <label>First Name : </label>
+                <input type="text" name="txtfn" required><br>
+                <label>Last Name :</label>
+                <input type="text" name="txtln" required><br>
+                <label>Mobile No :</label>
+                <input type="text" name="txtmn" required><br>
+                <label>Email : </label>
+                <input type="text" name="txtemail" required><br>
+                <label>Password :</label>
+                <input type="password" name="txtpass" required><br>
+                <input type="submit" name="btnregsubmit" value="Submit" onclick='return showInput()'>
+                <a href="back">Back</a>
+            </form>
         </div>
     </div>
 
-    <table border="1px" class="border" >
-        
+    <table border="1px" class="border">
+
         <tr>
-            
+
             <td><img src="/images/curtain.jpg" height="250px" width="250px" class="img1">
-            <div class="button">
-            <h3>curtain</h3>
-            <h4>£ 30</h4>
-            
-            <input type="submit" name="curtain" value="add to cart" class="btn">
-            </div></td>
+                <div class="button">
+                    <h3>curtain</h3>
+                    <h4>£ 30</h4>
+
+                    <input type="submit" name="curtain" value="add to cart" class="btn">
+                </div>
+            </td>
             <br>
-            
+
             <td><img src="/images/pillow.jpg" height="250px" width="250px" class="img2">
                 <div class="button">
-                <h3>pillow</h3>
-                <h4>£ 50</h4>
-                <input type="submit" name="pillow" value="add to cart" class="btn">
+                    <h3>pillow</h3>
+                    <h4>£ 50</h4>
+                    <input type="submit" name="pillow" value="add to cart" class="btn">
                 </div>
             </td><br>
 
             <td><img src="/images/bedsheet.jpg" height="250px" width="250px" class="img3">
                 <div class="button">
-                <h3 style="text-align: center;">bedsheet</h3>
-                <h4>£ 50</h4>
-                <input type="submit" name="bedsheet" value="add to cart" class="btn">
+                    <h3 style="text-align: center;">bedsheet</h3>
+                    <h4>£ 50</h4>
+                    <input type="submit" name="bedsheet" value="add to cart" class="btn">
                 </div>
             </td><br>
 
             <td><img src="/images/clock.jpg" height="250px" width="250px" class="img4">
                 <div class="button">
-                <h3>clock</h3>
-                <h4>£ 50</h4>
-                <input type="submit" name="clock" value="add to cart" class="btn" >
-            </div>
+                    <h3>clock</h3>
+                    <h4>£ 50</h4>
+                    <input type="submit" name="clock" value="add to cart" class="btn">
+                </div>
             </td><br>
 
             <td><img src="/images/frame.jpg" height="250px" width="250px" class="img5">
                 <div class="button">
-                <h3>frame</h3>
-                <h4>£ 50</h4>
-                <input type="submit" name="frame" value="add to cart" class="btn">
+                    <h3>frame</h3>
+                    <h4>£ 50</h4>
+                    <input type="submit" name="frame" value="add to cart" class="btn">
                 </div>
             </td><br>
         </tr>
-        
+
         <tr>
             <td><img src="/images/port.jpg" height="250px" width="250px" class="img6">
                 <div class="button">
-                <h3>port</h3>
-                <h4>£ 50</h4>
-                <input type="submit" name="port" value="add to cart" class="btn">
+                    <h3>port</h3>
+                    <h4>£ 50</h4>
+                    <input type="submit" name="port" value="add to cart" class="btn">
                 </div>
             </td><br>
 
             <td><img src="/images/table.jpg" height="250px" width="250px" class="img7">
                 <div class="button">
-                <h3>table</h3>
-                <h4>£ 50</h4>
-                <input type="submit" name="table" value="add to cart" class="btn">
+                    <h3>table</h3>
+                    <h4>£ 50</h4>
+                    <input type="submit" name="table" value="add to cart" class="btn">
                 </div>
             </td><br>
 
             <td><img src="/images/lamp.jpg" height="250px" width="250px" class="img8">
                 <div class="button">
-                <h3>lamp</h3>
-                <h4>£ 50</h4>
-                <input type="submit" name="lamp" value="add to cart" class="btn">
+                    <h3>lamp</h3>
+                    <h4>£ 50</h4>
+                    <input type="submit" name="lamp" value="add to cart" class="btn">
                 </div>
             </td><br>
 
             <td><img src="/images/chaair.jpg" height="250px" width="250px" class="img9">
                 <div class="button">
-                <h3>chair</h3>
-                <h4>£ 50</h4>
-                <input type="submit" name="chair" value="add to cart" class="btn">
+                    <h3>chair</h3>
+                    <h4>£ 50</h4>
+                    <input type="submit" name="chair" value="add to cart" class="btn">
                 </div>
             </td><br>
 
             <td><img src="/images/fan.jpg" height="250px" width="250px" class="img10">
                 <div class="button">
-                <h3>fan</h3>
-                <h4>£ 50</h4>
-                <input type="submit" name="fan" value="add to cart" class="btn">
+                    <h3>fan</h3>
+                    <h4>£ 50</h4>
+                    <input type="submit" name="fan" value="add to cart" class="btn">
                 </div>
             </td><br>
         </tr>
-        
+
 
     </table>
 
     <script>
 
-                    function showInput() 
-                     {
-                        return confirm("you have registered successfully");
-                     }
-                     
+        function showInput() {
+            document.getElementById("myModal").style.display = "none"
+            return confirm("you have registered successfully");
+
+        }
+
+
     </script>
-   
+
     <footer>
         <%- include('./footer'); %>
     </footer>
