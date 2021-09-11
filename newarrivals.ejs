@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <link rel="stylesheet" href="./css/homepage.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+
+        .modal{
+            border: 1px solid black;
+            width: 350px;
+            height: 330px;
+            display: none;
+
+            position: fixed;
+            margin-left: 500px;
+            margin-top: 100px;
+           
+            background-color: gray;
+            padding: 10px;
+            
+        } 
+        
+        input[name=txtemail], input[name=txtpass] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button[id=closebtn],input[name=btnsignin] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 40%;
+        }
+
+        body{
+            
+            background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;   
+            background-color:cadetblue;
+        }
+        
+        .img1{
+            padding: 10px;
+        }
+        .img2{
+            padding: 10px;
+        }
+        .img3{
+            padding: 10px;
+        }
+        .img4{
+            padding: 10px;
+        }
+        .img5{
+            padding: 10px;
+            transform:translateY(-5px) ;
+            transition: transform 0.5s;
+        }
+
+        .img5:hover{
+            transform: translateY(-5px);
+        }
+        .img6{
+            padding: 10px;
+        }
+        .img7{
+            padding: 10px;
+        }
+        .img8{
+            padding: 10px;
+        }
+        .img9{
+            padding: 10px;
+        }
+        .img10{
+            padding: 10px;
+        }
+        .center
+        {
+            position:center;
+        }
+        .btn{
+            display: inline-block;
+            background: #ff523b;
+            color: #fff;
+            padding: 8px 30px;
+            margin: 30px 0;
+            border-radius: 30px;
+            transition: background 0.5s;
+        }
+
+        .btn:hover{
+            background: #563434;
+        }
+
+        .button{
+            text-align: center;    
+        }
+    
+        </style>
+</head>
+
+<body>
+    
+    <header>
+        <%- include('./header'); %>
+    </header>
+
+    <div class="modal" id="myModal">
+        <h1>Sign In</h1>
+        <div class="modal-content">
+
+            
+            <label>Email : </label>
+            <input type="text" name="txtemail" ><br><br>
+            <label>Password :</label>
+            <input type="password" name="txtpass"><br>
+            <input type="submit" name="btnsignin" value="Sign In">
+            <button id="closebtn">close</button><br>
+            <a href="register">Create Account</a>
+            <a href="forgotpassword">Forgot Password</a>
+        </div>
+    </div>
+
+    <table border="1px" class="border" >
+
+        <tr>
+            
+            <td><img src="/images/arrival1.jpg" height="250px" width="250px" class="img1">
+                <div class="button">
+                <h3>Raymond</h3>
+                <h3>bedsheet</h3>
+                <h4>£ 30</h4>
+                <input type="submit" name="arrival1" value="add to cart" class="btn">
+                Quantity:<select class="option" name="changestatus">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                </div>
+            </td><br>
+            
+            <td><img src="/images/arrival2.jpg" height="250px" width="250px" class="img2">
+                <div class="button">
+                <h3>Raymond</h3>
+                <h3>port</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="arrival2" value="add to cart" class="btn">
+                Quantity:<select class="option" name="changestatus">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                </div>
+            </td><br>
+
+            <td><img src="/images/arrival3.jpg" height="250px" width="250px" class="img3">
+                <div class="button">
+                <h3>Raymond</h3>
+                <h3>show piece</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="arrival3" value="add to cart" class="btn">
+                Quantity:<select class="option" name="changestatus">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                </div>
+            </td><br>
+
+            <td><img src="/images/arrival4.jpg" height="250px" width="250px" class="img4">
+                <div class="button">
+                <h3>Raymond</h3>
+                <h3>statue</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="arrival4" value="add to cart" class="btn">
+                Quantity:<select class="option" name="changestatus">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                </div>
+            </td><br>
+
+            <td><img src="/images/arrival5.jpg" height="250px" width="250px" class="img5">
+                <div class="button">
+                <h3>Raymond</h3>
+                <h3>show piece</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="arrival5" value="add to cart" class="btn">
+                Quantity:<select class="option" name="changestatus">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                </div>
+            </td><br>
+        </tr>
+        <tr>
+            <td><img src="/images/arrival6.jpg" height="250px" width="250px" class="img6">
+                <div class="button">
+                <h3>Raymond</h3>       
+                <h3>port</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="arrival6" value="add to cart" class="btn">
+                Quantity:<select class="option" name="changestatus">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                </div>
+            </td><br>
+
+            <td><img src="/images/arrival7.jpg" height="250px" width="250px" class="img7">
+                <div class="button">
+                <h3>Raymond</h3>
+                <h3>clock</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="arrival7" value="add to cart" class="btn">
+                Quantity:<select class="option" name="changestatus">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                </div>
+            </td><br>
+
+            <td><img src="/images/arrival8.jpg" height="250px" width="250px" class="img8">
+                <div class="button">
+                <h3>Raymond</h3>
+                <h3>chair</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="arrival8" value="add to cart" class="btn">
+                Quantity:<select class="option" name="changestatus">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                </div>
+            </td><br>
+
+            <td><img src="/images/arrival9.jpg" height="250px" width="250px" class="img9">
+                <div class="button">
+                <h3>Raymond</h3>
+                <h3>pillow</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="arrival9" value="add to cart" class="btn">
+                Quantity:<select class="option" name="changestatus">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                </div>
+            </td><br>
+
+            <td><img src="/images/arrival10.jpg" height="250px" width="250px" class="img10">
+                <div class="button">
+                <h3>Raymond</h3>
+                <h3>curtain</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="arrival10" value="add to cart" class="btn">
+                Quantity:<select class="option" name="changestatus">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                </div>
+            </td><br>
+        </tr>
+    </table>
+    
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("mybtn");
+        var closebtn=document.getElementById("closebtn");
+
+        function openpopup()
+        {       
+            modal.style.display="block";
+        }
+        closebtn.onclick = function()
+        {
+            modal.style.display="none";
+        }
+    </script>
+
+    <footer>
+        <%- include('./footer'); %>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <link rel="stylesheet" href="./css/homepage.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        body{
+            
+            background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;   
+            background-color:white;
+            
+        }
+        footer{
+            margin-top: 21%;
+            
+            background-color:brown;
+        }
+        
+        .center
+        {
+            position:center;
+        }
+        .btn{
+            display: inline-block;
+            background: #ff523b;
+            color: #fff;
+            padding: 8px 30px;
+            margin: 30px 0;
+            border-radius: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn:hover{
+            background: #563434;
+        }
+
+/*h3{
+    text-align: center;
+}
+
+h4{
+    text-align: center;
+}*/
+        .button{
+            text-align: center;
+            
+        }
+
+        .modal{
+            border: 1px solid black;
+            width: 350px;
+            height: 330px;
+            display: none;
+           
+            position: fixed;
+            margin-left: 500px;
+            margin-top: 100px;
+           
+            background-color: gray;
+            padding: 10px;
+            
+        } 
+        
+        input[name=txtemail], input[name=txtpass] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button[id=closebtn],input[name=btnsignin] {
+            background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+}
+
+        #mybtn
+        {
+            padding: 2px 10px;
+            color: white;
+            outline: none;
+            border: none;
+            font-size: 21px;
+            background-color: transparent;
+        }
+
+        .table
+        {
+            margin: 0 auto;
+            margin-top: 10%;
+            background-color: pink;
+           
+        }
+        </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="content">
+
+            <nav >
+                
+                <div>
+                    <ul class="mainmenu">
+                        
+                        <li>
+                            <input type="text" placeholder="Search..">
+                        </li>
+                        <li> <a href="home">Home</a></li>  
+                        <li> <a href="#"> Category  </a>
+                            <ul class="submenu" style="top: 10; left:60%;">
+                                <li class="dropdown" style="width: 210px;"> <a href="#"> Home decor products</a>
+                                    <ul style="top: 0; left:100%;">
+                                        <li style="width: 150px;"><a href="bedsheet"> Bedsheets </a>
+                                            <ul style="top: 0; left:100%;">
+                                                <li style="width: 120px;"><a href="bdouble">Double</a></li>
+                                                <li style="width: 120px;"><a href="bsmall">Small</a></li>
+                                                <li style="width: 120px;"><a href="bking">King size</a></li>
+                                                <li style="width: 120px;"><a href="bqueen">Queen size</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li  style="width:150px"><a href="duvetcovers"> Duvet Covers </a>
+                                            <ul style="top: 0; left:100%;">
+                                                <li style="width: 120px;"><a href="ddouble">Double</a></li>
+                                                <li style="width: 120px;"><a href="dsmall">Small</a></li>
+                                                <li style="width: 120px;"><a href="dking">King size</a></li>
+                                                <li style="width: 120px;"><a href="dqueen">Queen size</a></li>
+                                            </ul>
+                                        </li>
+                                      <li style="width: 150px;"><a href="cusioncovers"> Cusion Covers</a></li>
+                                      <li style="width: 150px;"><a href="curtains"> Curtains </a></li>
+                                      <li style="width: 150px;"><a href="pillowcovers"> Pillow Covers </a></li>
+                                      <li style="width: 150px;"><a href="quilts"> Quilts </a></li>
+                                    </ul>
+                                  </li>
+                                  <li style="width:210px"> <a href="#"> Home Accessories </a>
+                                    <ul style="top: 0; left:100%;">
+                                      <li><a href="clocks"> Clocks </a></li>
+                                      <li><a href="vases"> Vases </a></li>
+                                      <li><a href="mirrors"> Mirrors</a></li>
+                                      <li><a href="candles"> Candles </a></li>
+                                    </ul>
+                                  </li>
+                            </ul>
+                        </li>
+                        <li> <a href="newarrival">New Arrivals </a></li>
+                        <li><a href="myorder">My Order</a></li>
+                        <li><button id="mybtn" onclick="openpopup()">Sign In</button></li>
+                        <li> <a href="cart"><button><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></button></a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+    </header>
+
+    <div class="modal" id="myModal">
+        <h1>Sign In</h1>
+        <div class="modal-content">
+            <label>Email : </label>
+            <input type="text" name="txtemail" ><br><br>
+            <label>Password :</label>
+            <input type="password" name="txtpass"><br>
+            <input type="submit" name="btnsignin" value="Sign In">
+            <button id="closebtn">close</button><br>
+            <a href="register">Create Account</a>
+            <a href="forgotpassword">Forgot Password</a>
+        </div>
+    </div>
+
+    <h5 style="margin: 0 auto;">Thank you for shopping <b>@yogeshchaudhary</b></h5>
+    <h5>Your order has been placed successfully</h5>
+    <h5>Items will be delivered at your door steps</h5>
+    <h5>Order ID : 2</h5>
+    <h5>Date of Purchase : 20/11/2020</h5>
+    <h5>Total amount :£ 800</h5>
+    <h5>Expected Delivery in :- 2 days</h5>
+
+    <script>
+        var modal = document.getElementById("myModal");
+                    var btn = document.getElementById("mybtn");
+                    var closebtn=document.getElementById("closebtn");
+
+                   function openpopup()
+                    {       
+                        modal.style.display="block";
+                    }
+                    closebtn.onclick = function()
+                    {
+                        modal.style.display="none";
+                    }
+
+    </script>
+  
+   
+    <footer>
+        <div class="contact us">
+            <a href="contactus" style="margin-left: 48%;">Contact Us</a>
+            <a href="aboutus" style="margin-left: 10px;">About Us</a>
+            <a href="help" style="margin-left: 10px;">Help</a><br><br>
+        
+        <i class="fa fa-facebook fa-2x" aria-hidden="true" style="margin-left: 50%;"></i>
+        <i class="fa fa-google fa-2x" aria-hidden="true" style="margin-left: 10px;"></i>
+        </div>
+    </footer>
+</body>
+
+</html>

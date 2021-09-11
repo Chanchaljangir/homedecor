@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/viewcoustomer.css" type="text/css">
+    <link rel="stylesheet" href="/css/homepage.css"type="text/css">
+    <style type="text/css">
+        body{
+            background-image: url(images/bg2.jpg);
+            background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;   
+        }
+        </style>
+</head>
+
+<body>
+
+    <header>
+        <%- include('./adminheader'); %>
+    </header>
+    <div class="table">
+        <table class="table table-striped" id="mytable" border="1">
+            <h2>Details of Orders</h2>
+            <thead>
+            <tr height="10px" width="20px">
+                <th>Order Id</th>
+                <th>Customer Email</th>
+                <th>Date of purchase</th>
+                <th>Order Status</th>
+                <th>Order Amount</th>
+                <th>Change Status</th>
+            </tr>
+            </thead>
+            <tbody>
+                <%
+                results.forEach(function(rs){
+                %>
+              <tr height="10px" width="20px">
+                <td><a href="orderdetails?orderid=<%=rs.orderid%>"><%=rs.orderid %></a></td>
+                <td><%=rs.email %></td>
+                <td><%=rs.dateofpurchase %></td>
+                <td><%=rs.orderstatus %></td>
+                <td><%=rs.orderamount %></td>
+                <td><select class="option" name="changestatus">
+                    <option disabled="disabled" selected="selected">--Choose option--</option>
+                    <option>Panding</option>
+                    <option>Cancel</option>
+                    <option>Delivered</option>
+                </select>
+                </td>
+              </tr>
+              <%})%>
+              
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

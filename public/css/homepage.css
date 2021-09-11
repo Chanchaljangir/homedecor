@@ -1,0 +1,91 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-image: url(img3.png);
+
+}
+
+header nav {
+    padding: 1.5rem 0; 
+    text-align: right;
+    
+}
+nav{
+    width: 100%;
+    background:black ;
+}
+nav ul{
+    margin: 0;
+    padding: 0;
+    margin-right: 20px;
+}
+nav ul li{
+    background: black;
+    position: relative;
+    list-style: none;
+    display: inline-block;
+}
+nav ul li a{
+    display: block;
+    padding: 0 40px;
+    color: white;
+    text-decoration: none;
+    line-height: 30px;
+    font-size: 20px;
+    
+}
+nav ul ul{
+    position: absolute;
+    top:30px;
+    display: none; 
+}
+nav ul li:hover > ul{
+    display: block;
+}
+nav ul ul li{
+    width: 100px;
+    float: none;
+    display: list-item;
+    position: relative;
+    font-size: 20px;
+    padding: 0 10px;
+}
+nav ul ul li a{
+    display: block;
+    padding: 5px 5px;
+    color: white;
+    text-decoration: none;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: right;
+}
+
+nav .mainmenu>li{
+    display: inline-block;
+    margin-right: 5px;
+}
+nav a{
+    margin: 0;
+    text-align: right;
+    padding: 5px 10px 5px 10px;
+    background:black;
+    list-style: none;
+    color:white;
+    text-decoration:none;
+    position: relative;
+    display: block; 
+}
+nav :hover>a {
+    background:pink;
+    cursor: pointer;
+    
+}
+nav .submenu{
+    position: absolute;
+    display: none;
+    list-style: none;
+    justify-content: space-around;
+
+}
+

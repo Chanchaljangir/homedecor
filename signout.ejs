@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <link rel="stylesheet" href="./css/homepage.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        body{
+            
+            background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;   
+            background-color:cadetblue;
+            
+        }
+        footer{
+            margin-top: 21%;
+            
+            background-color:brown;
+        }
+        .img1{
+            padding: 10px;
+        }
+        .img2{
+            padding: 10px;
+        }
+        .img3{
+            padding: 10px;
+        }
+        .img4{
+            padding: 10px;
+        }
+        .img5{
+            padding: 10px;
+        }
+        .img6{
+            padding: 10px;
+        }
+        .img7{
+            padding: 10px;
+        }
+        .img8{
+            padding: 10px;
+        }
+        .img9{
+            padding: 10px;
+        }
+        .img10{
+            padding: 10px;
+        }
+        .center
+        {
+            position:center;
+        }
+        .btn{
+            display: inline-block;
+            background: #ff523b;
+            color: #fff;
+            padding: 8px 30px;
+            margin: 30px 0;
+            border-radius: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn:hover{
+            background: #563434;
+        }
+
+/*h3{
+    text-align: center;
+}
+
+h4{
+    text-align: center;
+}*/
+        .button{
+            text-align: center;
+            
+        }
+
+        .modal{
+            border: 1px solid black;
+            width: 400px;
+            height: 400px;
+            
+           
+            position: fixed;
+            margin-left: 500px;
+            margin-top: 25px;
+           
+            background-color: gray;
+            padding: 10px;
+            
+        } 
+
+        
+        button[id=closebtn],input[name=btnsignout] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 40%;
+        }
+
+        
+        input[name=txtfn], input[name=txtln],input[name=txtmn],input[name=txtemail],input[name=txtpass] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        
+
+        input[name=btnregsubmit] {
+            background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+        #mybtn
+        {
+            padding: 2px 10px;
+            color: white;
+            outline: none;
+            border: none;
+            font-size: 21px;
+            background-color: transparent;
+        }
+        </style>
+
+</head>
+
+<body>
+   
+
+    <div class="modal" id="myModal">
+        <h1>Registration</h1>
+        <div class="modal-content">
+            <form action="/btnsignout" method="POST">
+                <label>Email : </label>
+                <input type="text" name="txtemail" ><br><br>
+                <label>Password :</label>
+                <input type="password" name="txtpass"><br><br>
+                <input type="submit" name="btnsignout" value="Sign Out">
+                <button id="closebtn">close</button><br><br>
+            <a href="back">Back</a>
+        </form>
+        </div>
+    </div>
+
+    <table border="1px" class="border" >
+        
+        <tr>
+            
+            <td><img src="/images/curtain.jpg" height="250px" width="250px" class="img1">
+            <div class="button">
+            <h3>curtain</h3>
+            <h4>£ 30</h4>
+            
+            <input type="submit" name="curtain" value="add to cart" class="btn">
+            </div></td>
+            <br>
+            
+            <td><img src="/images/pillow.jpg" height="250px" width="250px" class="img2">
+                <div class="button">
+                <h3>pillow</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="pillow" value="add to cart" class="btn">
+                </div>
+            </td><br>
+
+            <td><img src="/images/bedsheet.jpg" height="250px" width="250px" class="img3">
+                <div class="button">
+                <h3 style="text-align: center;">bedsheet</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="bedsheet" value="add to cart" class="btn">
+                </div>
+            </td><br>
+
+            <td><img src="/images/clock.jpg" height="250px" width="250px" class="img4">
+                <div class="button">
+                <h3>clock</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="clock" value="add to cart" class="btn" >
+            </div>
+            </td><br>
+
+            <td><img src="/images/frame.jpg" height="250px" width="250px" class="img5">
+                <div class="button">
+                <h3>frame</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="frame" value="add to cart" class="btn">
+                </div>
+            </td><br>
+        </tr>
+        
+        <tr>
+            <td><img src="/images/port.jpg" height="250px" width="250px" class="img6">
+                <div class="button">
+                <h3>port</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="port" value="add to cart" class="btn">
+                </div>
+            </td><br>
+
+            <td><img src="/images/table.jpg" height="250px" width="250px" class="img7">
+                <div class="button">
+                <h3>table</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="table" value="add to cart" class="btn">
+                </div>
+            </td><br>
+
+            <td><img src="/images/lamp.jpg" height="250px" width="250px" class="img8">
+                <div class="button">
+                <h3>lamp</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="lamp" value="add to cart" class="btn">
+                </div>
+            </td><br>
+
+            <td><img src="/images/chaair.jpg" height="250px" width="250px" class="img9">
+                <div class="button">
+                <h3>chair</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="chair" value="add to cart" class="btn">
+                </div>
+            </td><br>
+
+            <td><img src="/images/fan.jpg" height="250px" width="250px" class="img10">
+                <div class="button">
+                <h3>fan</h3>
+                <h4>£ 50</h4>
+                <input type="submit" name="fan" value="add to cart" class="btn">
+                </div>
+            </td><br>
+        </tr>
+        
+
+    </table>
+    <script>
+        var modal = document.getElementById("myModal");
+                    var btn = document.getElementById("mybtn");
+                    var closebtn=document.getElementById("closebtn");
+
+                   function openpopup()
+                    {
+                       
+                        modal.style.display="block";
+                    }
+                    closebtn.onclick = function()
+                    {
+                        modal.style.display="none";
+                    }
+
+    </script>
+  
+   
+    <footer>
+        <div class="contact us">
+            <a href="contactus" style="margin-left: 48%;">Contact Us</a>
+            <a href="aboutus" style="margin-left: 10px;">About Us</a>
+            <a href="help" style="margin-left: 10px;">Help</a><br><br>
+        
+        <i class="fa fa-facebook fa-2x" aria-hidden="true" style="margin-left: 50%;"></i>
+        <i class="fa fa-google fa-2x" aria-hidden="true" style="margin-left: 10px;"></i>
+        </div>
+    </footer>
+</body>
+
+</html>

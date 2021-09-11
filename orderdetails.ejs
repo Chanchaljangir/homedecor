@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/viewcoustomer.css"  type="text/css">
+    <link rel="stylesheet" href="css/homepage.css" type="text/css">
+    <style type="text/css">
+        body{
+            background-image: url(images/bg2.jpg);
+            background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;   
+        }
+        </style>
+</head>
+<body>
+    <header>
+        <%- include('./adminheader'); %>
+    </header>
+    <div class="table">
+        <table>
+            <h2>Details of Orders ID</h2>
+            <tr>
+                <th>ID</th>
+                <th>PRODUCT ID</th>
+                <th>QUANTITY</th>
+                <th>AMOUNT</th>
+               
+            </tr>
+            <tbody>
+                <%
+                results.forEach(function(rs){
+                %>
+              <tr>
+                <td><%=rs.orderid %></td>
+                <td><%=rs.productid %></td>
+                <td><%=rs.productquantity %></td>
+                <td><%=rs.producttotalamount %></td>
+              </tr>
+              <%})%>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

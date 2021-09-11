@@ -1,0 +1,77 @@
+.maincontainer {
+    position: relative;
+    width: 350px;
+    height: 680px;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 10px;
+    align-items: center;
+    margin: auto;
+    box-sizing: border-box;
+    background: gray;
+    box-shadow: 10px 10px 10px #cbced1, -10px -10px 10px white; 
+  }
+
+  .product-title {
+    margin-top: 5px;
+    /* margin: auto; */
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: white;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  .input {
+    text-align: left;
+    margin-top: 30px;
+  }
+  label, input, button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+  }
+  label {
+    margin-bottom: 4px;
+  }
+  
+  label:nth-of-type(n) {
+    margin-top: 12px;
+  }
+  input::placeholder {
+    color: gray;
+  }
+  input {
+    background: #ecf0f3;
+    padding: 10px;
+    padding-left: 20px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+  } 
+  .option{
+    width: 100%;  
+    background: #ecf0f3;
+    padding: 10px;
+    padding-left: 20px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+  }
+  button {
+    margin-top: 20px;
+    background: yellowgreen;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 900;
+    transition: 0.5s;
+  }
+  button:hover {
+    box-shadow: none;
+    background:yellow;
+  }  

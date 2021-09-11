@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <link rel="stylesheet" href="./css/homepage.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        body{
+            
+            background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;   
+            background-color:white;
+            
+        }
+        
+        .center
+        {
+            position:center;
+        }
+        .btn{
+            display: inline-block;
+            background: #ff523b;
+            color: #fff;
+            padding: 8px 30px;
+            margin: 30px 0;
+            border-radius: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn:hover{
+            background: #563434;
+        }
+
+/*h3{
+    text-align: center;
+}
+
+h4{
+    text-align: center;
+}*/
+        .button{
+            text-align: center;
+            
+        }
+
+        .modal{
+            border: 1px solid black;
+            width: 350px;
+            height: 330px;
+            display: none;
+           
+            position: fixed;
+            margin-left: 500px;
+            margin-top: 100px;
+           
+            background-color: gray;
+            padding: 10px;
+            
+        } 
+        
+        input[name=txtemail], input[name=txtpass] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button[id=closebtn],input[name=btnsignin] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 40%;
+        }
+
+        #mybutton
+        {
+            padding: 2px 10px;
+            color: white;
+            outline: none;
+            border: none;
+            font-size: 21px;
+            background-color: transparent;
+        }
+
+        .mybutton
+        {
+            padding: 10px;
+            font-size: 20px;
+            margin-top: 2%;
+            margin-left:30%;
+        }
+
+        .mybutton:hover
+        {
+            padding: 10px;
+            font-size: 20px;
+            margin-top: 2%;
+            margin-left:30%;
+            background-color: lightcoral;  
+        }
+
+        .table
+        {
+            margin: 0 auto;
+            margin-top: 10%;
+            border: 1px solid grey;
+            border-collapse: collapse;   
+        }
+
+        .table th{
+            background-color: rgb(1,152,122);
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .table td,tr{
+            text-align: center;
+        }
+        </style>
+
+</head>
+
+<body>
+  
+    <header>
+        <%- include('./header'); %>
+    </header>
+
+    <div class="modal" id="myModal">
+        <h1>Sign In</h1>
+        <div class="modal-content">
+            <label>Email : </label>
+            <input type="text" name="txtemail" ><br><br>
+            <label>Password :</label>
+            <input type="password" name="txtpass"><br>
+            <input type="submit" name="btnsignin" value="Sign In">
+            <button id="closebtn">close</button><br>
+            <a href="register">Create Account</a>
+            <a href="forgotpassword">Forgot Password</a>
+        </div>
+    </div>
+
+    <table border="1px" class="table" width="1000px" height="500px">
+        
+        <tr>
+            <th>Product-description</th>
+            <th>Quantity</th>
+            <th>Rate</th>
+            <th>Remove</th>
+        </tr>
+        
+        <tr>
+            <td>Raymond-pillow</td>
+            <td>2</td>
+            <td>£ 50</td>
+            <td><button class="mybutton" onclick="location.href='remove'">Remove</button></td>
+        </tr>
+
+        <tr>
+            <td>Raymond-bedsheet</td>
+            <td>2</td>
+            <td>£ 50</td>
+            <td><button class="mybutton" onclick="location.href='remove'">Remove</button></td>
+        </tr>
+
+        <tr>
+            <td>Raymond-clock</td>
+            <td>1</td>
+            <td>£ 100</td>
+            <td><button class="mybutton" onclick="location.href='remove'">Remove</button></td>
+        </tr>
+
+        <tr>
+            <td>Raymond-table</td>
+            <td>1</td>
+            <td>£ 500</td>
+            <td><button class="mybutton" onclick="location.href='remove'">Remove</button></td>
+        </tr>
+
+    </table><br>
+    
+    <b style="margin-left: 50%;">Sub-Total :£ 800</b><br>
+    <b style="margin-left: 50%;">Shipping-Charges :£ 50</b><br>
+    <b style="margin-left: 50%;">Total :£ 850</b><br><br>
+
+    <button class="mybutton" style="margin-left: 50%;" onclick="location.href='placedorder'">Placed Order</button>
+    
+    <script>
+        var modal = document.getElementById("myModal");
+                    var btn = document.getElementById("mybtn");
+                    var closebtn=document.getElementById("closebtn");
+
+                   function openpopup()
+                    {       
+                        modal.style.display="block";
+                    }
+                    closebtn.onclick = function()
+                    {
+                        modal.style.display="none";
+                    }
+
+    </script>
+  
+   
+    <footer>
+        <%- include('./footer'); %>
+    </footer>
+</body>
+
+</html>

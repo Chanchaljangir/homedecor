@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    
+    <style>
+        .modal{
+            border: 1px solid black;
+            width: 200px;
+            height: 200px;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            position: fixed;
+            margin-left: 500px;
+            margin-top: 100px;
+            display: none;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <button id="mybtn">Sign In!</button>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quae aspernatur voluptatum facilis, esse iste consectetur aliquid cum vel optio quibusdam laboriosam dolorem. Soluta temporibus maxime est quia, dignissimos suscipit.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam nemo delectus accusamus, saepe reiciendis sequi ducimus quos facere non. Ab porro fuga consectetur soluta accusamus provident pariatur sed voluptatem harum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit debitis ipsum impedit. Fugiat nisi alias, dolorem cumque ratione sit quod numquam eligendi nam iste cum, quasi excepturi? Molestiae, eos fugit?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam nemo delectus accusamus, saepe reiciendis sequi ducimus quos facere non. Ab porro fuga consectetur soluta accusamus provident pariatur sed voluptatem harum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit debitis ipsum impedit. Fugiat nisi alias, dolorem cumque ratione sit quod numquam eligendi nam iste cum, quasi excepturi? Molestiae, eos fugit?</p>
+    
+    <div class="modal" id="myModal">
+    
+        <div class="modal-content">
+            <label>Name : </label>
+            <input type="text" name="namefield" ><br>
+            <label>Password :</label>
+            <input type="password" name="passwordfield">
+            <input type="submit" value="Sign In">
+            <button id="closebtn">close</button>
+        </div>
+    </div>
+    <script>
+
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("mybtn");
+        var closebtn=document.getElementById("closebtn");
+
+        btn.onclick = function()
+        {
+            modal.style.display="block";
+        }
+        closebtn.onclick = function()
+        {
+            modal.style.display="none";
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="./css/viewcoustomer.css">
+        <link rel="stylesheet" href="./css/homepage.css">
+        <style type="text/css">
+            body{
+                background-image: url(images/bg4.jpg);
+                background-size: cover;
+                background-attachment: fixed; 
+                background-position: center;   
+            }
+            </style>
+    </head>
+
+    <body>
+
+        <header>
+            <%- include('./adminheader'); %>
+        </header>
+        <div class="table">
+        <table class="table table-striped" id="mytable" border="1">
+            <thead>
+              <tr height="10px" width="20px">
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mobile No.</th>
+                <th>Email</th>
+                <th>address line1</th>
+                <th>address line2</th>
+                <th>city</th>
+                <th>County</th>
+                <th>Country</th>
+              
+              </tr>
+            </thead>
+            <tbody>
+                <%
+                results.forEach(function(rs){
+                %> 
+              <tr height="10px" width="20px">
+                <td><%=rs.firstname %></td>
+                <td><%=rs.lastname %></td>
+                <td><%=rs.mobileno %></td>
+                <td><%=rs.email %></td>
+                <td><%=rs.addressline1 %></td>
+                <td><%=rs.addressline2 %></td>
+                <td><%=rs.city %></td>
+                <td><%=rs.county %></td>
+                <td><%=rs.country %></td>
+                
+              </tr>
+              <%})%>
+              
+            </tbody>
+          </table>
+          </div>
+    </body>
+</html>
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <link rel="stylesheet" href="./css/homepage.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        body{
+            
+            background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;   
+            background-color:white;
+            
+        }
+        footer{
+            margin-top: 21%;
+            
+            background-color:brown;
+        }
+        
+        .center
+        {
+            position:center;
+        }
+        .btn{
+            display: inline-block;
+            background: #ff523b;
+            color: #fff;
+            padding: 8px 30px;
+            margin: 30px 0;
+            border-radius: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn:hover{
+            background: #563434;
+        }
+
+/*h3{
+    text-align: center;
+}
+
+h4{
+    text-align: center;
+}*/
+        .button{
+            text-align: center;
+            
+        }
+
+        .modal{
+            border: 1px solid black;
+            width: 350px;
+            height: 330px;
+            display: none;
+           
+            position: fixed;
+            margin-left: 500px;
+            margin-top: 100px;
+           
+            background-color: gray;
+            padding: 10px;
+            
+        } 
+        
+        input[name=txtemail], input[name=txtpass] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button[id=closebtn],input[name=btnsignin] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 40%;
+        }
+
+        #mybtn
+        {
+            padding: 2px 10px;
+            color: white;
+            outline: none;
+            border: none;
+            font-size: 21px;
+            background-color: transparent;
+        }
+
+        .table
+        {
+            margin: 0 auto;
+            margin-top: 10%;
+            background-color: pink;
+           
+        }
+        </style>
+
+</head>
+
+<body>
+    
+    <header>
+        <%- include('./header'); %>
+    </header>
+
+    <div class="modal" id="myModal">
+        <h1>Sign In</h1>
+        <div class="modal-content">
+            <label>Email : </label>
+            <input type="text" name="txtemail" ><br><br>
+            <label>Password :</label>
+            <input type="password" name="txtpass"><br>
+            <input type="submit" name="btnsignin" value="Sign In">
+            <button id="closebtn">close</button><br>
+            <a href="register">Create Account</a>
+            <a href="forgotpassword">Forgot Password</a>
+        </div>
+    </div>
+
+    <table border="1px" class="table" >
+        
+        <tr>
+            <th>Order ID</th>
+            <th>Order Amount</th>
+            <th>Date of purchase</th>
+        </tr>
+        
+        <tr>
+            <td><a href="oid1">1</a></td>
+            <td>800</td>
+            <td>20/11/2020</td>
+        </tr>
+
+        <tr>
+            <td><a href="oid2">2</a></td>
+            <td>1000</td>
+            <td>21/10/2020</td>
+        </tr>
+
+        <tr>
+            <td><a href="oid3">3</a></td>
+            <td>2000</td>
+            <td>30/04/2021</td>
+        </tr>
+
+    </table>
+    
+    <script>
+        var modal = document.getElementById("myModal");
+                    var btn = document.getElementById("mybtn");
+                    var closebtn=document.getElementById("closebtn");
+
+                   function openpopup()
+                    {       
+                        modal.style.display="block";
+                    }
+                    closebtn.onclick = function()
+                    {
+                        modal.style.display="none";
+                    }
+
+    </script>
+  
+   
+    <footer>
+        <%- include('./footer'); %>
+    </footer>
+</body>
+
+</html>

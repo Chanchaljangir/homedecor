@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/addproduct.css">
+    <link rel="stylesheet" href="./css/homepage.css">
+    <style type="text/css">
+        body{
+            background-image: url(images/dark.jfif);
+            background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;   
+        }
+        .maincontainer{
+            margin-top: 100px;
+            height: 400px;
+        }
+
+
+        </style>
+</head>
+<body>
+  <header>
+    <%- include('./adminheader'); %>
+  </header>
+    <div class="maincontainer">
+        <div class="product-title"><h1>Product Details </h1></div>
+        <div class="input">
+         <form action="/editproducttype" method="POST">
+          <input type="hidden" name="producttypeid" value="<%=results.producttypeid %>"/>
+          <label>Category</label>
+            <select class="option" name="category"> 
+
+              
+                <option value="1">Home Decor Products</option>
+                <option value="2">Home Accessories</option>
+            </select>
+          <label>Product Type Name</label>
+          <input type="text" name="producttype" placeholder=" "  value="<%=results.producttypename %>"/>
+         
+          <label>Size</label>
+          <select class="option" name="size"> 
+            <option>--Choose option--</option>
+            <option value="1">Double</option>
+            <option value="2">Small</option>
+            <option value="3">King Size</option>
+            <option value="4">Queen Size</option>
+          </select>
+          
+          <button type="submit">Submit</button>
+        </form>
+       </div>
+        
+    </div>
+</body>
+</html>
