@@ -9,8 +9,6 @@ const port = process.env.PORT || 3000
 const mysql = require('mysql2');
 imgurl = "";
 
-
-
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -414,12 +412,29 @@ app.get('/vieworder', function (req, res) {
 
 
 app.get('/deleteproduct', function (req, res) {
+  
+  console.log("req.query.pid", req.query.pid);
   pid = req.query.pid;
   console.log(pid)
-  let sql = "delete from product where pid=" + pid;
+  let sql = "DELETE from products where productid=" + pid;
   let query = conn.query(sql, function (err, myresults) {
-    if (err) throw err;
-    res.redirect("viewproduct");
+    if (err) {
+      res.jsonp("Parent row cannot delete or update")
+      throw err
+    }
+    else {
+      let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+      let query = conn.query(sql, function (err, myresults) {
+        if (err) throw err;
+        res.render(__dirname + '/viewproduct.ejs', {
+          results: myresults
+
+        });
+        // console.log("product result ", myresults);
+      });
+    }
   });
 });
 
