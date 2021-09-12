@@ -14,7 +14,7 @@ imgurl = "";
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '',
+  password: 'Chanchal',
   database: 'homedecor',
 
   // multipleStatements: true
@@ -276,7 +276,7 @@ app.post('/editproduct', function (req, res, next) {
     }
     else {
       console.log("req.query.pid", req.body);
-      sql = `update products set categoryid = ${req.body.category},producttypeid=${req.body.producttype}, price=${req.body.price},brand='${req.body.company}', sizeid=${req.body.size} where productid = ${req.query.pid} `;
+      sql = `update products set categoryid = ${req.body.category},producttypeid=${req.body.producttype}, price=${req.body.price},brand='${req.body.company}', sizeid=${req.body.size} , productimgurl = '${imgurl}' where productid = ${req.query.pid} `;
       let query = conn.query(sql, function (err, myresults) {
         if (err) throw err;
 
@@ -288,11 +288,14 @@ app.post('/editproduct', function (req, res, next) {
 
 
 app.get('/updateproduct', function (req, res) {
+  console.log(req.url.split("?pid=")[1])
+  var PIDNO = req.url.split("?pid=")[1];
   let sql = "SELECT * FROM producttype";
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     res.render(__dirname + '/updateproduct', {
-      results: myresults
+      results: myresults,
+      Pid: PIDNO
     });
   });
   // res.render(__dirname + '/updateproduct.ejs');
@@ -319,7 +322,6 @@ app.get('/viewproducttype', function (req, res) {
 
 
 app.get('/updateproducttype', function (req, res) {
-
   producttypeid = req.query.producttypeid;
 
   let sql = "SELECT * FROM producttype WHERE producttypeid=" + producttypeid;
