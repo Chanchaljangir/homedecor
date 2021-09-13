@@ -229,7 +229,10 @@ app.post('/btnregsubmit', function (req, res) {
       res.send("User with " + req.body.txtemail + " email it already registed");
       // throw err;
     } else {
-      res.send("You successfullt registered");
+      // registerMsg
+      res.render(__dirname + '/registerMsg', {
+        results: "You successfullt registered"
+      });
       // res.render(__dirname + "/reg");
     }
   });
