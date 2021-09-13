@@ -76,8 +76,16 @@ app.post("/submitproduct", function (req, res, next) {
       sql = "insert into products values(DEFAULT,'" + req.body.category + "','" + req.body.producttype + "','" + imgurl + "','" + req.body.price + "','" + req.body.company + "','" + req.body.size + "','" + req.body.isnewarrival + "')";
       let query = conn.query(sql, function (err, myresults) {
         if (err) throw err;
-
-        res.send("Success, Image uploaded!" + req.body.producttype);
+        let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+        let query = conn.query(sql, function (err, myresults) {
+          if (err) throw err;
+          res.render(__dirname + '/viewproduct.ejs', {
+            results: myresults
+          });
+        });
+        // res.send("Success, Image uploaded!" + req.body.producttype);
       });
     }
   })
@@ -217,8 +225,16 @@ app.post('/btnregsubmit', function (req, res) {
   let data = { firstname: req.body.txtfn, lastname: req.body.txtln, mobileno: req.body.txtmn, email: req.body.txtemail, password: req.body.txtpass };
   let sql = "INSERT INTO users SET ?";
   let query = conn.query(sql, data, function (err, results) {
-    if (err) throw err;
-    res.render(__dirname + "/reg");
+    if (err) {
+      res.send("User with " + req.body.txtemail + " email it already registed");
+      // throw err;
+    } else {
+      // registerMsg
+      res.render(__dirname + '/registerMsg', {
+        results: "You successfullt registered"
+      });
+      // res.render(__dirname + "/reg");
+    }
   });
 });
 
@@ -412,7 +428,7 @@ app.get('/vieworder', function (req, res) {
 
 
 app.get('/deleteproduct', function (req, res) {
-  
+
   console.log("req.query.pid", req.query.pid);
   pid = req.query.pid;
   console.log(pid)
