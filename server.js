@@ -12,7 +12,7 @@ imgurl = "";
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Chanchal',
+  password: '',
   database: 'homedecor',
 
   // multipleStatements: true
