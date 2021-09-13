@@ -107,3 +107,12 @@ nav .submenu{
     text-decoration: none;
     color: black;
 }
+.thank-box {
+    max-width: 500px;
+    width: 100%;
+    background: #404040;
+    padding: 30px;
+    margin: 60px auto;
+    text-align: center;
+    color: #fff;
+}
