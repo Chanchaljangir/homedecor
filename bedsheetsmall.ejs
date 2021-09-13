@@ -118,8 +118,7 @@
         </div>
     </div>
 
-    <table border="1px" class="border">
-
+    <!-- <table border="1px" class="border">
         <tr>
             <% results.forEach(function(rs){ %>
                 <td><img src="/<%=rs.productimgurl %>" height="250px" width="250px" class="img1">
@@ -144,9 +143,31 @@
 
                 <%})%>
         </tr>
-
-    </table>
-
+    </table> -->
+    <div class="box-4col">
+        <% results.forEach(function(rs){ %>
+            <div class="box">
+                <img src="/<%=rs.productimgurl %>" height="250px" width="250px" class="img1">
+                <div class="button">
+                    <h3>
+                        <%=rs.brand %>
+                    </h3>
+                    <h3>
+                        <%=rs.producttypename %>
+                    </h3>
+                    <h4>£ <%=rs.price %>
+                    </h4>
+                    <input type="submit" name="bedsheet1" value="add to cart" class="btn">
+                    Quantity:<select class="option" name="changestatus">
+                        <option selected="selected">1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+            </div>
+            <%})%>
+    </div>
     <script>
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("mybtn");
@@ -159,7 +180,14 @@
             modal.style.display = "none";
         }
     </script>
+    <script type="text/javascript">
+        dbedsheet();
+        function dbedsheet() {
+            console.log("result###########", results);
 
+        }
+
+    </script>
 
     <footer>
         <%- include('./footer'); %>
