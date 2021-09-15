@@ -144,14 +144,14 @@ h4{
     </header>
 
     <div class="modal" id="myModal">
-        <h1>Sign In</h1>
+        <h1>Sign In 99</h1>
         <div class="modal-content">
             <form action="/btnsignin" method="GET">
 
                 <label>Email : </label>
-                <input type="text" name="txtemail"><br><br>
+                <input type="text" name="txtemail" required /><br><br>
                 <label>Password :</label>
-                <input type="password" name="txtpass"><br>
+                <input type="password" name="txtpass" required /><br>
                 <input type="submit" name="btnsignin" id="signinBtn" value="Sign In">
 
                 <button id="closebtn">close</button><br>
@@ -321,7 +321,7 @@ h4{
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("mybtn");
         var closebtn = document.getElementById("closebtn");
-        var closeSignIn = document.getElementById("signinBtn")
+        //var closeSignIn = document.getElementById("signinBtn")
         function openpopup() {
             modal.style.display = "block";
         }

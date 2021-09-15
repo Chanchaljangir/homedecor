@@ -65,7 +65,6 @@ var upload = multer({
 }).single("imgupload");
 
 app.post("/submitproduct", function (req, res, next) {
-
   upload(req, res, function (err) {
 
     if (err) {
