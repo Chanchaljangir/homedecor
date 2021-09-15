@@ -96,6 +96,21 @@ h4{
 
         }
 
+        .regModal {
+            border: 1px solid black;
+            width: 350px;
+            height: 330px;
+            display: none;
+
+            position: fixed;
+            margin-left: 500px;
+            margin-top: 100px;
+
+            background-color: gray;
+            padding: 10px;
+
+        }
+
         input[name=txtemail],
         input[name=txtpass] {
             width: 100%;
@@ -144,7 +159,7 @@ h4{
     </header>
 
     <div class="modal" id="myModal">
-        <h1>Sign In 99</h1>
+        <h1>Sign In</h1>
         <div class="modal-content">
             <form action="/btnsignin" method="GET">
 
@@ -155,10 +170,30 @@ h4{
                 <input type="submit" name="btnsignin" id="signinBtn" value="Sign In">
 
                 <button id="closebtn">close</button><br>
-                <a href="register">Create Account</a>
+                <!-- <a href="register">Create Account</a> -->
+                <a href="javascript:void(0)" onclick='return showRegtrationModel()'>Create Account</a>
                 <a href="forgotpassword">Forgot Password</a>
             </form>
 
+        </div>
+    </div>
+    <div class="regModal" id="registerationModal">
+        <h1>Registration</h1>
+        <div class="modal-content">
+            <form action="/btnregsubmit" method="POST">
+                <label>First Name : </label>
+                <input type="text" name="txtfn" required><br>
+                <label>Last Name :</label>
+                <input type="text" name="txtln" required><br>
+                <label>Mobile No :</label>
+                <input type="text" name="txtmn" required><br>
+                <label>Email : </label>
+                <input type="text" name="txtemail" required><br>
+                <label>Password :</label>
+                <input type="password" name="txtpass" required><br>
+                <input type="submit" name="btnregsubmit" value="Submit">
+                <a href="back">Back</a>
+            </form>
         </div>
     </div>
     <section>
@@ -328,8 +363,17 @@ h4{
         closebtn.onclick = function () {
             modal.style.display = "none";
         }
-        closeSignIn.onclick = function () {
+        // closeSignIn.onclick = function () {
+        //     modal.style.display = "none";
+        // }
+        function showInput() {
+            document.getElementById("registerationModal").style.display = "none"
+            return confirm("Thank you for register");
+        }
+        function showRegtrationModel() {
             modal.style.display = "none";
+            var modal1 = document.getElementById("registerationModal");
+            modal1.style.display = "block";
         }
     </script>
 
