@@ -174,7 +174,7 @@ app.get('/bdouble', function (req, res) {
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Double"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/bedsheetdouble', {
+    res.render(__dirname + '/curtain', {
       results: myresults
     });
   });
@@ -185,7 +185,7 @@ app.get('/bsmall', function (req, res) {
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Small"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/bedsheetsmall', {
+    res.render(__dirname + '/curtain', {
       results: myresults
     });
   });

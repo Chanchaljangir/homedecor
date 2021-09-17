@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> </title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./css/homepage.css" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
@@ -157,7 +159,7 @@
                     </h3>
                     <h4>£ <%=rs.price %>
                     </h4>
-                    <input type="submit" name="bedsheet1" value="add to cart" class="btn">
+                    <input type="submit" name="bedsheet1" value="add to cart" class="btn" onclick='return addtoCart("<%=rs.productid %>", "<%=rs.price %>")'>
                     Quantity:<select class="option" name="changestatus">
                         <option selected="selected">1</option>
                         <option>2</option>
@@ -184,7 +186,26 @@
         dbedsheet();
         function dbedsheet() {
             console.log("result###########", results);
+        }
 
+        function addtoCart(pid, pcost) {
+            console.log("pid##", pid, pcost)
+            var data1 = {
+                "productId": pid,
+                "productCost": pcost
+            }
+            $.ajax({
+                url: "http://localhost:3000/addTocart",
+                enctype: 'application/json',
+                data: data1,
+                method: "POST",
+                success: function () {
+                    alert("Successfully added in cart")
+                },
+                error: function () {
+                    alert("Oops. Something went wrong")
+                }
+            })
         }
 
     </script>
