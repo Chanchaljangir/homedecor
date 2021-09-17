@@ -293,7 +293,15 @@ app.get('/btnsignin', function (req, res) {
       console.log("in panel if")
       res.cookie('email', email);
       res.cookie('password', pass);
-      res.render(__dirname + "/signout");
+      let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+      inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+      inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+      let query = conn.query(sql, function (err, myresults) {
+        if (err) throw err;
+        res.render(__dirname + '/afterSignIn', {
+          results: myresults
+        });
+      });
     }
     else {
 

@@ -181,7 +181,24 @@ h4{
     </div>
 
     <table border="1px" class="border">
-
+        <div class="box-4col">
+            <% results.forEach(function(rs){ %>
+                <div class="box">
+                    <img src="/<%=rs.productimgurl %>" height="250px" width="250px" class="img1">
+                    <div class="button">
+                        <!-- <h3>
+                            <%=rs.brand %>
+                        </h3> -->
+                        <h3>
+                            <%=rs.producttypename %>
+                        </h3>
+                        <h4>£ <%=rs.price %>
+                        </h4>
+                        <input type="submit" name="curtain" value="add to cart" class="btn">
+                    </div>
+                </div>
+                <%})%>
+        </div>
         <tr>
 
             <td><img src="/images/curtain.jpg" height="250px" width="250px" class="img1">
