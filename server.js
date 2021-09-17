@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 const port = process.env.PORT || 3000
 const mysql = require('mysql2');
 imgurl = "";
-
+var cookieParser = require('cookie-parser');
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -98,10 +98,14 @@ conn.connect(function (err) {
 });
 
 app.get('/', function (req, res) {
+  res.clearCookie('name');
+  res.clearCookie('password');
   res.render(__dirname + "/homepage1");
 });
 
 app.get('/home', function (req, res) {
+  res.clearCookie('name');
+  res.clearCookie('password');
   res.render(__dirname + "/homepage1");
 });
 
@@ -287,6 +291,8 @@ app.get('/btnsignin', function (req, res) {
     console.log(myresults.length);
     if (myresults.length != 0) {
       console.log("in panel if")
+      res.cookie('email', email);
+      res.cookie('password', pass);
       res.render(__dirname + "/signout");
     }
     else {
