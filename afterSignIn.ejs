@@ -6,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> </title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./css/homepage.css" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style type="text/css">
         body {
 
@@ -179,7 +182,7 @@ h4{
             </form>
         </div>
     </div>
-
+    <!-- <form action="/addTocart" enctype="multipart/form-data" method="POST"> -->
     <table border="1px" class="border">
         <div class="box-4col">
             <% results.forEach(function(rs){ %>
@@ -194,7 +197,8 @@ h4{
                         </h3>
                         <h4>£ <%=rs.price %>
                         </h4>
-                        <input type="submit" name="curtain" value="add to cart" class="btn">
+                        <input type="submit" name="curtain" value="add to cart" class="btn" id="cartPro"
+                            onclick='return addtoCart("<%=rs.productid %>", "<%=rs.price %>")'>
                     </div>
                 </div>
                 <%})%>
@@ -285,10 +289,10 @@ h4{
                 </div>
             </td><br>
         </tr>
-
-
     </table>
-    <script>
+    <!-- </form> -->
+
+    <script type="text/javascript">
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("mybtn");
         var closebtn = document.getElementById("closebtn");
@@ -300,7 +304,44 @@ h4{
         closebtn.onclick = function () {
             modal.style.display = "none";
         }
-        document.getElementById("myModal").style.display = "none"
+        document.getElementById("myModal").style.display = "none";
+
+
+        function addtoCart(pid, pcost) {
+            console.log("pid##", pid, pcost)
+            var data1 = {
+                "productId": pid,
+                "productCost": pcost
+            }
+            // fetch('http://localhost:3000/addTocart', {
+            //     method: 'POST',
+            //     body: JSON.stringify({"name":"abc"}),
+            //     headers: {
+            //         'Content-type': 'application/json'
+            //     }
+            // })
+            //     .then(response => response.json())
+            //     .then(json => {
+            //         console.log(json);
+            //     });
+            $.ajax({
+
+                url: "http://localhost:3000/addTocart",
+                enctype: 'application/json',
+                data: data1,
+                method: "POST",
+                success: function () {
+                    alert("Successfully added in cart")
+                },
+                error: function () {
+                    alert("Oops. Something went wrong")
+                }
+            })
+        
+
+        }
+
+
 
     </script>
 
