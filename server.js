@@ -304,35 +304,54 @@ app.get('/btnsignin', function (req, res) {
       });
     }
     else {
-
       console.log("in panel else")
       res.render(__dirname + "/homepage1");
     }
   });
+});
 
-  app.post("/addTocart", function (req, res, next) {
-    console.log("req.body######## ", req.cookies.email);
-    var userEmail = req.cookies.email
-    // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
-    let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false, userEmail='${userEmail}'`;
+
+app.post("/addTocart", function (req, res, next) {
+  console.log("req.body######## ", req.cookies.email);
+  var userEmail = req.cookies.email
+  // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
+  let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false, userEmail='${userEmail}'`;
+  let query = conn.query(sql, function (err, myresults) {
+    if (err) throw err;
+    else {
+      res.send("Success add in cart");
+    }
+    //     let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+    // inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+    // inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+    //     let query = conn.query(sql, function (err, myresults) {
+    //       if (err) throw err;
+    //       res.render(__dirname + '/viewproduct.ejs', {
+    //         results: myresults
+    // });
+    // });
+    // res.send("Success, Image uploaded!" + req.body.producttype);
+  });
+})
+
+app.get("/viewCart", function (req, res, next) {
+  console.log("req.body######## ", req.cookies.email);
+  var userEmail = req.cookies.email
+  // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
+  let sql = `select c.id as cartId, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from homedecor.cart as c inner join homedecor.products as p on p.productid = c.productid 
+  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  where isOrderd=false 
+  And userEmail="${userEmail}"
+   group by c.productId`;
+  let query = conn.query(sql, function (err, myresults) {
     let query = conn.query(sql, function (err, myresults) {
       if (err) throw err;
-      else {
-        res.send("Success add in cart");
-      }
-      //     let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-      // inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-      // inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
-      //     let query = conn.query(sql, function (err, myresults) {
-      //       if (err) throw err;
-      //       res.render(__dirname + '/viewproduct.ejs', {
-      //         results: myresults
-      // });
-      // });
-      // res.send("Success, Image uploaded!" + req.body.producttype);
+      res.render(__dirname + '/cart', {
+        results: myresults
+      });
     });
   })
-});
+})
 
 app.post('/btnregsubmit', function (req, res) {
   let data = { firstname: req.body.txtfn, lastname: req.body.txtln, mobileno: req.body.txtmn, email: req.body.txtemail, password: req.body.txtpass };

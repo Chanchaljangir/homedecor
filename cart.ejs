@@ -156,35 +156,14 @@ h4{
             <th>Rate</th>
             <th>Total</th>
         </tr>
-        
+        <% results.forEach(function(rs){ %>
         <tr>
-            <td>Raymond-pillow</td>
-            <td>2</td>
-            <td>£ 50</td>
-            <td>£ 100</td>
+            <td><%=rs.brand %> - <%=rs.producttypename %></td>
+            <td><%=rs.Quantity %></td>
+            <td>£ <%=rs.price %></td>
+            <td>£ <%=rs.ptotal %></td>
         </tr>
-
-        <tr>
-            <td>Raymond-bedsheet</td>
-            <td>2</td>
-            <td>£ 50</td>
-            <td>£ 100</td>
-        </tr>
-
-        <tr>
-            <td>Raymond-clock</td>
-            <td>1</td>
-            <td>£ 100</td>
-            <td>£ 100</td>
-        </tr>
-
-        <tr>
-            <td>Raymond-table</td>
-            <td>1</td>
-            <td>£ 500</td>
-            <td>£ 500</td>
-        </tr>
-
+        <%})%>
     </table>
     
     <button class="mybtn" onclick="location.href='checkout'">CheckOut</button>
