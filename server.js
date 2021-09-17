@@ -41,7 +41,7 @@ var storage = multer.diskStorage({
     cb(null, imgurl)
   }
 })
-
+app.use(cookieParser());
 const maxSize = 1 * 1000 * 1000;
 
 var upload = multer({
@@ -311,22 +311,23 @@ app.get('/btnsignin', function (req, res) {
   });
 
   app.post("/addTocart", function (req, res, next) {
-    console.log("req.body######## ", req.body.productCost);
+    console.log("req.body######## ", req.cookies.email);
+    var userEmail = req.cookies.email
     // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
-    let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false`;
+    let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false, userEmail='${userEmail}'`;
     let query = conn.query(sql, function (err, myresults) {
       if (err) throw err;
-      else{
+      else {
         res.send("Success add in cart");
       }
-  //     let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  // inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  // inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
-  //     let query = conn.query(sql, function (err, myresults) {
-  //       if (err) throw err;
-  //       res.render(__dirname + '/viewproduct.ejs', {
-  //         results: myresults
-        // });
+      //     let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+      // inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+      // inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+      //     let query = conn.query(sql, function (err, myresults) {
+      //       if (err) throw err;
+      //       res.render(__dirname + '/viewproduct.ejs', {
+      //         results: myresults
+      // });
       // });
       // res.send("Success, Image uploaded!" + req.body.producttype);
     });
