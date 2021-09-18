@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> </title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./css/homepage.css" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
@@ -163,19 +165,44 @@
         <%})%>
     </div>
     
-    <script>
+    <script type="text/javascript">
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("mybtn");
-        var closebtn=document.getElementById("closebtn");
+        var closebtn = document.getElementById("closebtn");
 
-        function openpopup()
-        {       
-            modal.style.display="block";
+        function openpopup() {
+
+            modal.style.display = "block";
         }
-        closebtn.onclick = function()
-        {
-            modal.style.display="none";
+        closebtn.onclick = function () {
+            modal.style.display = "none";
         }
+        document.getElementById("myModal").style.display = "none";
+
+
+        function addtoCart(pid, pcost) {
+            console.log("pid##", pid, pcost)
+            var data1 = {
+                "productId": pid,
+                "productCost": pcost
+            }
+            $.ajax({
+
+                url: "http://localhost:3000/addTocart",
+                enctype: 'application/json',
+                data: data1,
+                type: "POST",
+                success: function () {
+                    alert("Successfully added in cart")
+                },
+                error: function () {
+                    alert("Oops. Something went wrong")
+                }
+            })
+        }
+
+
+
     </script>
 
     <footer>
