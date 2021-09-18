@@ -150,7 +150,7 @@
                     <h4>£ <%=rs.price %>
                     </h4>
                     <input type="submit" name="bedsheet1" value="add to cart" class="btn"
-                    onclick='return addtoCart("<%=rs.productid %>", "<%=rs.price %>")'>
+                    onclick='return cartAlert()'>
                     Quantity:<select class="option" name="changestatus">
                         <option selected="selected">1</option>
                         <option>2</option>
@@ -175,6 +175,9 @@
         closebtn.onclick = function()
         {
             modal.style.display="none";
+        }
+        function cartAlert() {
+            alert("Please signIn first");
         }
     </script>
 
