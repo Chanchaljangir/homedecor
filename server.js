@@ -486,8 +486,9 @@ app.post("/cartItemRemovee", function (req, res) {
 })
 
 app.post("/paymentGetway", async function (req, res) {
-  let CashFree_AppId = "";
-  let CashFree_SecretKey = "";
+  // #home123456
+  let CashFree_AppId = "970956cd6c9acc6fdece248c159079";
+  let CashFree_SecretKey = "823f101db442b76280e84840466dc5865b1a342c";
   console.log("paymentGetway.body@@@@@@@@######## ", req.body.cartId);
   var userEmail = req.cookies.email
   let orderId = Math.floor(100000 + Math.random() * 9000000);
@@ -501,12 +502,12 @@ app.post("/paymentGetway", async function (req, res) {
     orderCurrency: 'INR',
     orderNote: 'item price payment',
     customerEmail: userEmail,
-    // customerName: req.body.customerName,
-    // customerPhone: req.body.customerPhone,
+    customerName: "Chanchal",
+    customerPhone: "97453657999",
     returnUrl: 'http://localhost:3000/placedorder',
     // notifyUrl: 'https://epicapi.mastersunion.org/api/org/' + getdue.organizationId + '/stu/' + getdue.studentId + '/feeDueId/' + getdue.id + '/orderId/' + orderId + '/updateFeeAfterPaymentReturnUrl',
   }
-  let url = 'https://api.cashfree.com/api/v1/order/create'
+  let url = 'https://test.cashfree.com/api/v1/order/create'
   await axios.post(url, qs.stringify(postData), {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
