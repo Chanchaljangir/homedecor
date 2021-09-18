@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const multer = require("multer");
 const bodyParser = require('body-parser');
+const axios = require('axios')
+const qs = require('querystring')
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'uploads')));
 const port = process.env.PORT || 3000
@@ -481,6 +483,37 @@ app.post("/cartItemRemovee", function (req, res) {
       res.send("Success add in cart");
     }
   });
+})
+
+app.post("/paymentGetway", async function (req, res) {
+  let CashFree_AppId = "";
+  let CashFree_SecretKey = "";
+  console.log("paymentGetway.body@@@@@@@@######## ", req.body.cartId);
+  var userEmail = req.cookies.email
+  let orderId = Math.floor(100000 + Math.random() * 9000000);
+  //////////////////////////////////////////////////////////////////////////
+  let secretKey = process.env.CashFree_SecretKey;
+  let postData = {
+    appId: CashFree_AppId,
+    secretKey: CashFree_SecretKey,
+    orderId: orderId,
+    orderAmount: req.body.price,
+    orderCurrency: 'INR',
+    orderNote: 'item price payment',
+    customerEmail: userEmail,
+    // customerName: req.body.customerName,
+    // customerPhone: req.body.customerPhone,
+    returnUrl: 'http://localhost:3000/placedorder',
+    // notifyUrl: 'https://epicapi.mastersunion.org/api/org/' + getdue.organizationId + '/stu/' + getdue.studentId + '/feeDueId/' + getdue.id + '/orderId/' + orderId + '/updateFeeAfterPaymentReturnUrl',
+  }
+  let url = 'https://api.cashfree.com/api/v1/order/create'
+  await axios.post(url, qs.stringify(postData), {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  }).then(async (result) => {
+    console.log("then result is############################################ ", result.data)
+  })
 })
 
 app.post('/btnregsubmit', function (req, res) {

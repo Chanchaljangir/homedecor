@@ -183,7 +183,8 @@ h4{
     <b style="margin-left: 50%;">Shipping-Charges :£ 50</b><br>
     <b style="margin-left: 50%;">Total :£ 850</b><br><br>
 
-    <button class="mybutton" style="margin-left: 50%;" onclick="location.href='placedorder'">Placed Order</button>
+    <button class="mybutton" style="margin-left: 50%;" onclick='return paymentGetway("20","50")'>Placed
+        Order</button>
 
     <script type="text/javascript">
         var modal = document.getElementById("myModal");
@@ -204,6 +205,24 @@ h4{
             }
             $.ajax({
                 url: "http://localhost:3000/cartItemRemovee",
+                enctype: 'application/json',
+                type: "POST",
+                // dataType:'json',
+                data: data1,
+                success: function () {
+                    alert("Item deleted successfully, Reload the page")
+                },
+                error: function () {
+                    alert("Oops. Something went wrong")
+                }
+            })
+        }
+        function paymentGetway(cid) {
+            var data1 = {
+                "cartId": cid
+            }
+            $.ajax({
+                url: "http://localhost:3000/paymentGetway",
                 enctype: 'application/json',
                 type: "POST",
                 // dataType:'json',
