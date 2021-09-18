@@ -98,13 +98,13 @@ conn.connect(function (err) {
 });
 
 app.get('/', function (req, res) {
-  res.clearCookie('name');
+  res.clearCookie('email');
   res.clearCookie('password');
   res.render(__dirname + "/homepage1");
 });
 
 app.get('/home', function (req, res) {
-  res.clearCookie('name');
+  res.clearCookie('email');
   res.clearCookie('password');
   res.render(__dirname + "/homepage1");
 });

@@ -136,7 +136,7 @@
                     <h4>£ <%=rs.price %>
                     </h4>
                     <input type="submit" name="bedsheet1" value="add to cart" class="btn"
-                    onclick='return addtoCart("<%=rs.productid %>", "<%=rs.price %>")'>
+                    onclick='return cartAlert()'>
                     Quantity:<select class="option" name="changestatus">
                         <option selected="selected">1</option>
                         <option>2</option>
@@ -162,24 +162,8 @@
             modal.style.display = "none";
         }
 
-        function addtoCart(pid, pcost) {
-            console.log("pid##", pid, pcost)
-            var data1 = {
-                "productId": pid,
-                "productCost": pcost
-            }
-            $.ajax({
-                url: "http://localhost:3000/addTocart",
-                enctype: 'application/json',
-                data: data1,
-                method: "POST",
-                success: function () {
-                    alert("Successfully added in cart")
-                },
-                error: function () {
-                    alert("Oops. Something went wrong")
-                }
-            })
+        function cartAlert() {
+            alert("Please signIn first");
         }
     </script>
 
