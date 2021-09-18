@@ -9,20 +9,20 @@
     <link rel="stylesheet" href="./css/homepage.css" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
-        body{
-            
+        body {
+
             background-size: cover;
-            background-attachment: fixed; 
-            background-position: center;   
-            background-color:white;
-            
+            background-attachment: fixed;
+            background-position: center;
+            background-color: white;
+
         }
-        
-        .center
-        {
-            position:center;
+
+        .center {
+            position: center;
         }
-        .btn{
+
+        .btn {
             display: inline-block;
             background: #ff523b;
             color: #fff;
@@ -33,38 +33,39 @@
             align-items: center;
         }
 
-        .btn:hover{
+        .btn:hover {
             background: #563434;
         }
 
-/*h3{
+        /*h3{
     text-align: center;
 }
 
 h4{
     text-align: center;
 }*/
-        .button{
+        .button {
             text-align: center;
-            
+
         }
 
-        .modal{
+        .modal {
             border: 1px solid black;
             width: 350px;
             height: 330px;
             display: none;
-           
+
             position: fixed;
             margin-left: 500px;
             margin-top: 100px;
-           
+
             background-color: gray;
             padding: 10px;
-            
-        } 
-        
-        input[name=txtemail], input[name=txtpass] {
+
+        }
+
+        input[name=txtemail],
+        input[name=txtpass] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -73,18 +74,18 @@ h4{
             box-sizing: border-box;
         }
 
-        button[id=closebtn],input[name=btnsignin] {
+        button[id=closebtn],
+        input[name=btnsignin] {
             background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 40%;
-}
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 40%;
+        }
 
-        #mybtn
-        {
+        #mybtn {
             padding: 2px 10px;
             color: white;
             outline: none;
@@ -92,53 +93,56 @@ h4{
             font-size: 21px;
             background-color: transparent;
         }
-        .mybtn
-        {
+
+        .mybtn {
             padding: 10px;
             font-size: 20px;
             margin-top: 2%;
-            margin-left:30%;
+            margin-left: 30%;
         }
-        .mybtn:hover
-        {
+
+        .mybtn:hover {
             padding: 10px;
             font-size: 20px;
             margin-top: 2%;
-            margin-left:30%;
-            background-color: lightcoral;  
+            margin-left: 30%;
+            background-color: lightcoral;
 
         }
-        .table
-        {
+
+        .table {
             margin: 0 auto;
             margin-top: 10%;
             border: 1px solid grey;
-            border-collapse: collapse;   
+            border-collapse: collapse;
         }
-        .table th{
-            background-color: rgb(1,152,122);
+
+        .table th {
+            background-color: rgb(1, 152, 122);
             color: white;
             font-size: 20px;
             font-weight: 600;
         }
-        .table td,tr{
+
+        .table td,
+        tr {
             text-align: center;
         }
-        </style>
+    </style>
 
 </head>
 
 <body>
-   
+
     <header>
-        <%- include('./header'); %>
+        <%- include('./signInHeader'); %>
     </header>
 
     <div class="modal" id="myModal">
         <h1>Sign In</h1>
         <div class="modal-content">
             <label>Email : </label>
-            <input type="text" name="txtemail" ><br><br>
+            <input type="text" name="txtemail"><br><br>
             <label>Password :</label>
             <input type="password" name="txtpass"><br>
             <input type="submit" name="btnsignin" value="Sign In">
@@ -149,7 +153,7 @@ h4{
     </div>
 
     <table border="1px" class="table" width="1000px" height="500px">
-        
+
         <tr>
             <th>Product-description</th>
             <th>Quantity</th>
@@ -157,35 +161,39 @@ h4{
             <th>Total</th>
         </tr>
         <% results.forEach(function(rs){ %>
-        <tr>
-            <td><%=rs.brand %> - <%=rs.producttypename %></td>
-            <td><%=rs.Quantity %></td>
-            <td>£ <%=rs.price %></td>
-            <td>£ <%=rs.ptotal %></td>
-        </tr>
-        <%})%>
+            <tr>
+                <td>
+                    <%=rs.brand %> - <%=rs.producttypename %>
+                </td>
+                <td>
+                    <%=rs.Quantity %>
+                </td>
+                <td>£ <%=rs.price %>
+                </td>
+                <td>£ <%=rs.ptotal %>
+                </td>
+            </tr>
+            <%})%>
     </table>
-    
+
     <button class="mybtn" onclick="location.href='checkout'">CheckOut</button>
-    
+
     <b style="margin-left: 330px;">Sub-Total :£ 800</b>
     <script>
         var modal = document.getElementById("myModal");
-                    var btn = document.getElementById("mybtn");
-                    var closebtn=document.getElementById("closebtn");
+        var btn = document.getElementById("mybtn");
+        var closebtn = document.getElementById("closebtn");
 
-                   function openpopup()
-                    {       
-                        modal.style.display="block";
-                    }
-                    closebtn.onclick = function()
-                    {
-                        modal.style.display="none";
-                    }
+        function openpopup() {
+            modal.style.display = "block";
+        }
+        closebtn.onclick = function () {
+            modal.style.display = "none";
+        }
 
     </script>
-  
-   
+
+
     <footer>
         <%- include('./footer'); %>
     </footer>

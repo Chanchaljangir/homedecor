@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <link rel="stylesheet" href="./css/homepage.css" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -58,8 +59,10 @@
                         </li>
                         <li> <a href="newarrival">New Arrivals </a></li>
                         <li> <a href="myorder">My Order </a></li>
-                        <li><a href="/"><button id="mybtn">LogOut</button></a>
-
+                        
+                        <li><a href="/" id="mybtn">LogOut
+                            <!-- <span class="nm-tag">(Chanchal) </span> -->
+                        </a>
                         </li>
                         <li> <a href="/viewCart"><button><i class="fa fa-shopping-cart fa-2x"
                                         aria-hidden="true"></i></button></a></li>
@@ -68,6 +71,9 @@
             </nav>
 
     </header>
+    <script type="text/javascript">
+        console.log(document.cookie);
+    </script>
 </body>
 
 </html>

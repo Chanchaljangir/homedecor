@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser');
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '',
+  password: 'Chanchal',
   database: 'homedecor',
 
   // multipleStatements: true
@@ -161,7 +161,23 @@ app.get('/back', function (req, res) {
 
 
 app.get('/newarrival', function (req, res) {
-  res.render(__dirname + "/newarrivals");
+  var userEmail = req.cookies.email
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where isnewarrival =  true`;
+  let query = conn.query(sql, function (err, myresults) {
+    if (err) throw err;
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/newarrivals', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/sigInNewarrivals', {
+        results: myresults
+      });
+    }
+  });
 });
 
 /*app.get('/home',function(req,res){
@@ -169,102 +185,175 @@ app.get('/newarrival', function (req, res) {
 });*/
 
 app.get('/bdouble', function (req, res) {
+  var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Double"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/curtain', {
-      results: myresults
-    });
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/curtain', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/afterSignInCurtain', {
+        results: myresults
+      });
+    }
   });
 });
 app.get('/bsmall', function (req, res) {
+  var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Small"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/curtain', {
-      results: myresults
-    });
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/curtain', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/afterSignInCurtain', {
+        results: myresults
+      });
+    }
   });
 });
 app.get('/curtains', function (req, res) {
+  var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="curtain"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/curtain', {
-      results: myresults
-    });
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/curtain', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/afterSignInCurtain', {
+        results: myresults
+      });
+    }
   });
 });
 app.get('/ddouble', function (req, res) {
+  var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="duver" AND sizename="Double"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/curtain', {
-      results: myresults
-    });
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/curtain', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/afterSignInCurtain', {
+        results: myresults
+      });
+    }
   });
 });
 app.get('/dsmall', function (req, res) {
+  var userEmail = req.cookies.email
+  console.log("userEmail dsamll", userEmail);
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="duver" AND sizename="Small"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/curtain', {
-      results: myresults
-    });
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/curtain', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/afterSignInCurtain', {
+        results: myresults
+      });
+    }
   });
 });
 app.get('/clock', function (req, res) {
+  var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Clock" AND sizename="Small"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/curtain', {
-      results: myresults
-    });
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/curtain', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/afterSignInCurtain', {
+        results: myresults
+      });
+    }
   });
 });
 app.get('/clock', function (req, res) {
+  var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Clock" AND sizename="Small" AND sizename="Double"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/curtain', {
-      results: myresults
-    });
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/curtain', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/afterSignInCurtain', {
+        results: myresults
+      });
+    }
   });
 });
 app.get('/mirrors', function (req, res) {
+  var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Mirrors" AND sizename="Small" AND sizename="Double"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/curtain', {
-      results: myresults
-    });
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/curtain', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/afterSignInCurtain', {
+        results: myresults
+      });
+    }
   });
 });
 app.get('/candles', function (req, res) {
+  var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Candles" AND sizename="Small" AND sizename="Double"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/curtain', {
-      results: myresults
-    });
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/curtain', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/afterSignInCurtain', {
+        results: myresults
+      });
+    }
   });
 });
 // app.get('/ddouble', function (req, res) {
@@ -276,7 +365,14 @@ app.get('/btnsignout', function (req, res) {
   res.render(__dirname + "/homapage1");
 });
 
-
+app.get('/signInHeader', function (req, res) {
+  var userEmail = req.cookies.email
+  console.log("userEmail........", userEmail);
+  console.log("result", userEmail)
+  res.render(__dirname + '/signInHeader', {
+    results: userEmail
+  });
+});
 
 app.get('/clocks', function (req, res) {
   res.render(__dirname + "/clocks");

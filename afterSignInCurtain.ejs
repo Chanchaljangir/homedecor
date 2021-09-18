@@ -103,7 +103,7 @@
 <body>
 
     <header>
-        <%- include('./header'); %>
+        <%- include('./signInHeader'); %>
     </header>
 
     <div class="modal" id="myModal">
@@ -120,33 +120,33 @@
         </div>
     </div>
 
-   
+
     <div class="box-4col">
         <% results.forEach(function(rs){ %>
-        <div class="box">
-            <div class="box-in">
-                <img src="/<%=rs.productimgurl %>" height="280px" width="280px" class="img1">
-                <a  class="link">
-                    <h3>
-                        <%=rs.brand %>
-                    </h3>
-                    <h3>
-                        <%=rs.producttypename %>
-                    </h3>
-                    <h4>£ <%=rs.price %>
-                    </h4>
-                    <input type="submit" name="bedsheet1" value="add to cart" class="btn"
-                    onclick='return addtoCart("<%=rs.productid %>", "<%=rs.price %>")'>
-                    Quantity:<select class="option" name="changestatus">
-                        <option selected="selected">1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
-                </a>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/<%=rs.productimgurl %>" height="280px" width="280px" class="img1">
+                    <a class="link">
+                        <h3>
+                            <%=rs.brand %>
+                        </h3>
+                        <h3>
+                            <%=rs.producttypename %>
+                        </h3>
+                        <h4>£ <%=rs.price %>
+                        </h4>
+                        <input type="submit" name="bedsheet1" value="add to cart" class="btn"
+                            onclick='return addtoCart("<%=rs.productid %>", "<%=rs.price %>")'>
+                        Quantity:<select class="option" name="changestatus">
+                            <option selected="selected">1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </a>
+                </div>
             </div>
-        </div>
-        <%})%>
+            <%})%>
     </div>
 
 
