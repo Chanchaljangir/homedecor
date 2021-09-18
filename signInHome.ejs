@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <link rel="stylesheet" href="./css/homepage.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        body {
+
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: cadetblue;
+
+        }
+
+        .img1 {
+            padding: 10px;
+        }
+
+        .img2 {
+            padding: 10px;
+        }
+
+        .img3 {
+            padding: 10px;
+        }
+
+        .img4 {
+            padding: 10px;
+        }
+
+        .img6 {
+            padding: 10px;
+        }
+
+        .img7 {
+            padding: 10px;
+        }
+
+        .img8 {
+            padding: 10px;
+        }
+
+        .img9 {
+            padding: 10px;
+        }
+
+        .center {
+            position: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff523b;
+            color: #fff;
+            padding: 8px 30px;
+            margin: 30px 0;
+            border-radius: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn:hover {
+            background: #563434;
+        }
+
+        /*h3{
+    text-align: center;
+}
+
+h4{
+    text-align: center;
+}*/
+        .button {
+            text-align: center;
+
+        }
+
+        .modal {
+            border: 1px solid black;
+            width: 350px;
+            height: 330px;
+            display: none;
+            left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+            position: fixed;
+           margin: auto;
+            background-color: gray;
+            padding: 10px;
+
+        }
+
+        .regModal {
+            border: 1px solid black;
+            width: 350px;
+            min-height: 330px;
+            display: none;
+
+            position: fixed;
+            left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+margin: auto;
+            background-color: gray;
+            padding: 10px;
+
+        }
+
+        
+        input{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button[id=closebtn],button[name=btnregsubmit],
+        input[name=btnsignin] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 40%;
+        }
+
+        #mybtn {
+            padding: 2px 10px;
+            color: white;
+            outline: none;
+            border: none;
+            font-size: 21px;
+            background-color: transparent;
+        }
+
+        section {
+            display: inline-block;
+            width: 100%;
+        }
+
+        table {
+            margin: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <%- include('./signInHeader'); %>
+    </header>
+
+    <div class="modal" id="myModal">
+        <h1>Sign In</h1>
+        <div class="modal-content">
+            <form action="/btnsignin" method="GET">
+
+                <label>Email : </label>
+                <input type="text" name="txtemail" required /><br><br>
+                <label>Password :</label>
+                <input type="password" name="txtpass" required /><br>
+                <input type="submit" name="btnsignin" id="signinBtn" value="Sign In">
+
+                <button id="closebtn">close</button><br>
+                <!-- <a href="register">Create Account</a> -->
+                <a href="javascript:void(0)" onclick='return showRegtrationModel()'>Create Account</a>
+                <a href="forgotpassword">Forgot Password</a>
+            </form>
+
+        </div>
+    </div>
+    <div class="regModal" id="registerationModal">
+        <h1>Registration</h1>
+        <div class="modal-content">
+            <form action="/btnregsubmit" method="POST">
+                <label>First Name : </label>
+                <input type="text" name="txtfn" required><br>
+                <label>Last Name :</label>
+                <input type="text" name="txtln" required><br>
+                <label>Mobile No :</label>
+                <input type="text" name="txtmn" required><br>
+                <label>Email : </label>
+                <input type="text" name="txtemail" required><br>
+                <label>Password :</label>
+                <input type="password" name="txtpass" required><br>
+                <input type="submit" name="btnregsubmit" value="Submit">
+                <a href="back">Back</a>
+            </form>
+        </div>
+    </div>
+    <section>
+
+        <!-- <table border="1px" class="border">
+
+            <tr>
+
+                <td><img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
+                    <div class="button">
+
+                        <h3>Curtain</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/pillow.jpg" height="280px" width="280px" class="img2">
+                    <div class="button">
+
+                        <h3>Pillow</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/bedsheet.jpg" height="280px" width="280px" class="img3">
+                    <div class="button">
+
+                        <h3>bedsheet</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/clock.jpg" height="280px" width="280px" class="img4">
+                    <div class="button">
+
+                        <h3>clock</h3>
+
+                    </div>
+                </td><br>
+
+
+            </tr>
+
+            <tr>
+                <td><img src="/images/port.jpg" height="280px" width="280px" class="img6">
+                    <div class="button">
+
+                        <h3>port</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/table.jpg" height="280px" width="280px" class="img7">
+                    <div class="button">
+
+                        <h3>table</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/lamp.jpg" height="280px" width="280px" class="img8">
+                    <div class="button">
+
+                        <h3>lamp</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/chaair.jpg" height="280px" width="280px" class="img9">
+                    <div class="button">
+
+                        <h3>chair</h3>
+
+                    </div>
+                </td><br>
+
+
+            </tr>
+
+
+        </table> -->
+        <div class="box-4col">
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/bedsheet1.jpg" height="280px" width="280px" class="img1">
+                    <a href="bdouble" class="link">
+                        <h3>Bedsheets Double</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/bedsheet-single.jpeg" height="280px" width="280px" class="img1">
+                    <a href="bsmall" class="link">
+                        <h3>Bedsheets Single</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/duvet1.jpg" height="280px" width="280px" class="img1">
+                    <a href="ddouble" class="link">
+                        <h3>Duvet Cover double</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/duvet-single.jpg" height="280px" width="280px" class="img1">
+                    <a href="dsmall" class="link">
+                        <h3>Duvet Cover Single</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/curtain3.jpg" height="280px" width="280px" class="img1">
+                    <a href="curtains" class="link">
+                        <h3>Curtain</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/clock1.jpg" height="280px" width="280px" class="img1">
+                    <a href="clock" class="link">
+                        <h3>Clock</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/mirror.jpg" height="280px" width="280px" class="img1">
+                    <a href="mirrors" class="link">
+                        <h3>Mirror</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/images/candles.jpg" height="280px" width="280px" class="img1">
+                    <a href="candles" class="link">
+                        <h3>Candles</h3>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("mybtn");
+        var closebtn = document.getElementById("closebtn");
+        //var closeSignIn = document.getElementById("signinBtn")
+        function openpopup() {
+            modal.style.display = "block";
+        }
+        closebtn.onclick = function () {
+            modal.style.display = "none";
+        }
+        // closeSignIn.onclick = function () {
+        //     modal.style.display = "none";
+        // }
+        function showInput() {
+            document.getElementById("registerationModal").style.display = "none"
+            return confirm("Thank you for register");
+        }
+        function showRegtrationModel() {
+            modal.style.display = "none";
+            var modal1 = document.getElementById("registerationModal");
+            modal1.style.display = "block";
+        }
+    </script>
+
+
+    <footer>
+        <%- include('./footer'); %>
+    </footer>
+</body>
+
+</html>

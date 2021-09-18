@@ -109,7 +109,9 @@ app.get('/home', function (req, res) {
   res.render(__dirname + "/homepage1");
 });
 
-
+app.get('/signhome', function (req, res) {
+  res.render(__dirname + "/signInHome");
+});
 
 
 
