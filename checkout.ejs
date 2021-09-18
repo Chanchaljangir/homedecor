@@ -206,13 +206,13 @@ h4{
                 url: "http://localhost:3000/cartItemRemovee",
                 enctype: 'application/json',
                 type: "POST",
-                dataType: 'json',
+                // dataType:'json',
                 data: data1,
                 success: function () {
                     alert("Item deleted successfully, Reload the page")
                 },
                 error: function () {
-                    alert("Item deleted successfully, Reload the page")
+                    alert("Oops. Something went wrong")
                 }
             })
         }
