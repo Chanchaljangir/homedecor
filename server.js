@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 const port = process.env.PORT || 3000
 const mysql = require('mysql2');
 imgurl = "";
-
+var cookieParser = require('cookie-parser');
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -41,7 +41,7 @@ var storage = multer.diskStorage({
     cb(null, imgurl)
   }
 })
-
+app.use(cookieParser());
 const maxSize = 1 * 1000 * 1000;
 
 var upload = multer({
@@ -65,7 +65,6 @@ var upload = multer({
 }).single("imgupload");
 
 app.post("/submitproduct", function (req, res, next) {
-
   upload(req, res, function (err) {
 
     if (err) {
@@ -99,10 +98,14 @@ conn.connect(function (err) {
 });
 
 app.get('/', function (req, res) {
+  res.clearCookie('name');
+  res.clearCookie('password');
   res.render(__dirname + "/homepage1");
 });
 
 app.get('/home', function (req, res) {
+  res.clearCookie('name');
+  res.clearCookie('password');
   res.render(__dirname + "/homepage1");
 });
 
@@ -171,7 +174,7 @@ app.get('/bdouble', function (req, res) {
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Double"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/bedsheetdouble', {
+    res.render(__dirname + '/curtain', {
       results: myresults
     });
   });
@@ -182,7 +185,7 @@ app.get('/bsmall', function (req, res) {
   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Small"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
-    res.render(__dirname + '/bedsheetsmall', {
+    res.render(__dirname + '/curtain', {
       results: myresults
     });
   });
@@ -288,23 +291,67 @@ app.get('/btnsignin', function (req, res) {
     console.log(myresults.length);
     if (myresults.length != 0) {
       console.log("in panel if")
-      res.render(__dirname + "/signout");
+      res.cookie('email', email);
+      res.cookie('password', pass);
+      let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+      inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+      inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+      let query = conn.query(sql, function (err, myresults) {
+        if (err) throw err;
+        res.render(__dirname + '/afterSignIn', {
+          results: myresults
+        });
+      });
     }
     else {
-
       console.log("in panel else")
       res.render(__dirname + "/homepage1");
     }
-
-
-
   });
 });
 
 
+app.post("/addTocart", function (req, res, next) {
+  console.log("req.body######## ", req.cookies.email);
+  var userEmail = req.cookies.email
+  // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
+  let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false, userEmail='${userEmail}'`;
+  let query = conn.query(sql, function (err, myresults) {
+    if (err) throw err;
+    else {
+      res.send("Success add in cart");
+    }
+    //     let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+    // inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+    // inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+    //     let query = conn.query(sql, function (err, myresults) {
+    //       if (err) throw err;
+    //       res.render(__dirname + '/viewproduct.ejs', {
+    //         results: myresults
+    // });
+    // });
+    // res.send("Success, Image uploaded!" + req.body.producttype);
+  });
+})
 
-
-
+app.get("/viewCart", function (req, res, next) {
+  console.log("req.body######## ", req.cookies.email);
+  var userEmail = req.cookies.email
+  // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
+  let sql = `select c.id as cartId, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from homedecor.cart as c inner join homedecor.products as p on p.productid = c.productid 
+  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  where isOrderd=false 
+  And userEmail="${userEmail}"
+   group by c.productId`;
+  let query = conn.query(sql, function (err, myresults) {
+    let query = conn.query(sql, function (err, myresults) {
+      if (err) throw err;
+      res.render(__dirname + '/cart', {
+        results: myresults
+      });
+    });
+  })
+})
 
 app.post('/btnregsubmit', function (req, res) {
   let data = { firstname: req.body.txtfn, lastname: req.body.txtln, mobileno: req.body.txtmn, email: req.body.txtemail, password: req.body.txtpass };

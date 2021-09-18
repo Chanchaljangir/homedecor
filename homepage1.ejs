@@ -96,6 +96,21 @@ h4{
 
         }
 
+        .regModal {
+            border: 1px solid black;
+            width: 350px;
+            height: 330px;
+            display: none;
+
+            position: fixed;
+            margin-left: 500px;
+            margin-top: 100px;
+
+            background-color: gray;
+            padding: 10px;
+
+        }
+
         input[name=txtemail],
         input[name=txtpass] {
             width: 100%;
@@ -125,7 +140,8 @@ h4{
             font-size: 21px;
             background-color: transparent;
         }
-        section{
+
+        section {
             display: inline-block;
             width: 100%;
         }
@@ -148,187 +164,216 @@ h4{
             <form action="/btnsignin" method="GET">
 
                 <label>Email : </label>
-                <input type="text" name="txtemail"><br><br>
+                <input type="text" name="txtemail" required /><br><br>
                 <label>Password :</label>
-                <input type="password" name="txtpass"><br>
+                <input type="password" name="txtpass" required /><br>
                 <input type="submit" name="btnsignin" id="signinBtn" value="Sign In">
 
                 <button id="closebtn">close</button><br>
-                <a href="register">Create Account</a>
+                <!-- <a href="register">Create Account</a> -->
+                <a href="javascript:void(0)" onclick='return showRegtrationModel()'>Create Account</a>
                 <a href="forgotpassword">Forgot Password</a>
             </form>
 
         </div>
     </div>
-<section>
-    
-    <table border="1px" class="border">
-
-        <tr>
-
-            <td><img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                <div class="button">
-
-                    <h3>Curtain</h3>
-
-                </div>
-            </td><br>
-
-            <td><img src="/images/pillow.jpg" height="280px" width="280px" class="img2">
-                <div class="button">
-
-                    <h3>Pillow</h3>
-
-                </div>
-            </td><br>
-
-            <td><img src="/images/bedsheet.jpg" height="280px" width="280px" class="img3">
-                <div class="button">
-
-                    <h3>bedsheet</h3>
-
-                </div>
-            </td><br>
-
-            <td><img src="/images/clock.jpg" height="280px" width="280px" class="img4">
-                <div class="button">
-
-                    <h3>clock</h3>
-
-                </div>
-            </td><br>
-
-
-        </tr>
-
-        <tr>
-            <td><img src="/images/port.jpg" height="280px" width="280px" class="img6">
-                <div class="button">
-
-                    <h3>port</h3>
-
-                </div>
-            </td><br>
-
-            <td><img src="/images/table.jpg" height="280px" width="280px" class="img7">
-                <div class="button">
-
-                    <h3>table</h3>
-
-                </div>
-            </td><br>
-
-            <td><img src="/images/lamp.jpg" height="280px" width="280px" class="img8">
-                <div class="button">
-
-                    <h3>lamp</h3>
-
-                </div>
-            </td><br>
-
-            <td><img src="/images/chaair.jpg" height="280px" width="280px" class="img9">
-                <div class="button">
-
-                    <h3>chair</h3>
-
-                </div>
-            </td><br>
-
-
-        </tr>
-
-
-    </table>
-    <div class="box-4col">
-        <div class="box">
-            <div class="box-in">
-                <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                <a href="javascript:void(0);" class="link">
-                    <h3>Curtain</h3>
-                </a>
-            </div>
-            
-        </div>
-        <div class="box">
-            <div class="box-in">
-                <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                <a href="javascript:void(0);" class="link">
-                    <h3>Curtain</h3>
-                </a>
-            </div>
-            
-        </div>
-        <div class="box">
-            <div class="box-in">
-                <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                <a href="javascript:void(0);" class="link">
-                    <h3>Curtain</h3>
-                </a>
-            </div>
-            
-        </div>
-        <div class="box">
-            <div class="box-in">
-                <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                <a href="javascript:void(0);" class="link">
-                    <h3>Curtain</h3>
-                </a>
-            </div>
-            
-        </div>
-        <div class="box">
-            <div class="box-in">
-                <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                <a href="javascript:void(0);" class="link">
-                    <h3>Curtain</h3>
-                </a>
-            </div>
-            
-        </div>
-        <div class="box">
-            <div class="box-in">
-                <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                <a href="javascript:void(0);" class="link">
-                    <h3>Curtain</h3>
-                </a>
-            </div>
-            
-        </div>
-        <div class="box">
-            <div class="box-in">
-                <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                <a href="javascript:void(0);" class="link">
-                    <h3>Curtain</h3>
-                </a>
-            </div>
-            
-        </div>
-        <div class="box">
-            <div class="box-in">
-                <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                <a href="javascript:void(0);" class="link">
-                    <h3>Curtain</h3>
-                </a>
-            </div>
-            
+    <div class="regModal" id="registerationModal">
+        <h1>Registration</h1>
+        <div class="modal-content">
+            <form action="/btnregsubmit" method="POST">
+                <label>First Name : </label>
+                <input type="text" name="txtfn" required><br>
+                <label>Last Name :</label>
+                <input type="text" name="txtln" required><br>
+                <label>Mobile No :</label>
+                <input type="text" name="txtmn" required><br>
+                <label>Email : </label>
+                <input type="text" name="txtemail" required><br>
+                <label>Password :</label>
+                <input type="password" name="txtpass" required><br>
+                <input type="submit" name="btnregsubmit" value="Submit">
+                <a href="back">Back</a>
+            </form>
         </div>
     </div>
-</section>
-   
+    <section>
+
+        <table border="1px" class="border">
+
+            <tr>
+
+                <td><img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
+                    <div class="button">
+
+                        <h3>Curtain</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/pillow.jpg" height="280px" width="280px" class="img2">
+                    <div class="button">
+
+                        <h3>Pillow</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/bedsheet.jpg" height="280px" width="280px" class="img3">
+                    <div class="button">
+
+                        <h3>bedsheet</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/clock.jpg" height="280px" width="280px" class="img4">
+                    <div class="button">
+
+                        <h3>clock</h3>
+
+                    </div>
+                </td><br>
+
+
+            </tr>
+
+            <tr>
+                <td><img src="/images/port.jpg" height="280px" width="280px" class="img6">
+                    <div class="button">
+
+                        <h3>port</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/table.jpg" height="280px" width="280px" class="img7">
+                    <div class="button">
+
+                        <h3>table</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/lamp.jpg" height="280px" width="280px" class="img8">
+                    <div class="button">
+
+                        <h3>lamp</h3>
+
+                    </div>
+                </td><br>
+
+                <td><img src="/images/chaair.jpg" height="280px" width="280px" class="img9">
+                    <div class="button">
+
+                        <h3>chair</h3>
+
+                    </div>
+                </td><br>
+
+
+            </tr>
+
+
+        </table>
+        <div class="box-4col">
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
+                    <a href="javascript:void(0);" class="link">
+                        <h3>Curtain</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
+                    <a href="javascript:void(0);" class="link">
+                        <h3>Curtain</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
+                    <a href="javascript:void(0);" class="link">
+                        <h3>Curtain</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
+                    <a href="javascript:void(0);" class="link">
+                        <h3>Curtain</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
+                    <a href="javascript:void(0);" class="link">
+                        <h3>Curtain</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
+                    <a href="javascript:void(0);" class="link">
+                        <h3>Curtain</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
+                    <a href="javascript:void(0);" class="link">
+                        <h3>Curtain</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
+                    <a href="javascript:void(0);" class="link">
+                        <h3>Curtain</h3>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <script>
 
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("mybtn");
         var closebtn = document.getElementById("closebtn");
-        var closeSignIn = document.getElementById("signinBtn")
+        //var closeSignIn = document.getElementById("signinBtn")
         function openpopup() {
             modal.style.display = "block";
         }
         closebtn.onclick = function () {
             modal.style.display = "none";
         }
-        closeSignIn.onclick = function () {
+        // closeSignIn.onclick = function () {
+        //     modal.style.display = "none";
+        // }
+        function showInput() {
+            document.getElementById("registerationModal").style.display = "none"
+            return confirm("Thank you for register");
+        }
+        function showRegtrationModel() {
             modal.style.display = "none";
+            var modal1 = document.getElementById("registerationModal");
+            modal1.style.display = "block";
         }
     </script>
 

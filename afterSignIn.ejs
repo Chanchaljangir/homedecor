@@ -6,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> </title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./css/homepage.css" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style type="text/css">
         body {
 
@@ -161,7 +164,9 @@ h4{
 </head>
 
 <body>
-
+    <header>
+        <%- include('./signInHeader'); %>
+    </header>
 
     <div class="modal" id="myModal">
         <h1>Registration</h1>
@@ -177,10 +182,28 @@ h4{
             </form>
         </div>
     </div>
-
+    <!-- <form action="/addTocart" enctype="multipart/form-data" method="POST"> -->
     <table border="1px" class="border">
-
-        <tr>
+        <div class="box-4col">
+            <% results.forEach(function(rs){ %>
+                <div class="box">
+                    <img src="/<%=rs.productimgurl %>" height="250px" width="250px" class="img1">
+                    <div class="button">
+                        <!-- <h3>
+                            <%=rs.brand %>
+                        </h3> -->
+                        <h3>
+                            <%=rs.producttypename %>
+                        </h3>
+                        <h4>£ <%=rs.price %>
+                        </h4>
+                        <input type="submit" name="curtain" value="add to cart" class="btn" id="cartPro"
+                            onclick='return addtoCart("<%=rs.productid %>", "<%=rs.price %>")'>
+                    </div>
+                </div>
+                <%})%>
+        </div>
+        <!-- <tr>
 
             <td><img src="/images/curtain.jpg" height="250px" width="250px" class="img1">
                 <div class="button">
@@ -223,53 +246,11 @@ h4{
                     <input type="submit" name="frame" value="add to cart" class="btn">
                 </div>
             </td><br>
-        </tr>
-
-        <tr>
-            <td><img src="/images/port.jpg" height="250px" width="250px" class="img6">
-                <div class="button">
-                    <h3>port</h3>
-                    <h4>£ 50</h4>
-                    <input type="submit" name="port" value="add to cart" class="btn">
-                </div>
-            </td><br>
-
-            <td><img src="/images/table.jpg" height="250px" width="250px" class="img7">
-                <div class="button">
-                    <h3>table</h3>
-                    <h4>£ 50</h4>
-                    <input type="submit" name="table" value="add to cart" class="btn">
-                </div>
-            </td><br>
-
-            <td><img src="/images/lamp.jpg" height="250px" width="250px" class="img8">
-                <div class="button">
-                    <h3>lamp</h3>
-                    <h4>£ 50</h4>
-                    <input type="submit" name="lamp" value="add to cart" class="btn">
-                </div>
-            </td><br>
-
-            <td><img src="/images/chaair.jpg" height="250px" width="250px" class="img9">
-                <div class="button">
-                    <h3>chair</h3>
-                    <h4>£ 50</h4>
-                    <input type="submit" name="chair" value="add to cart" class="btn">
-                </div>
-            </td><br>
-
-            <td><img src="/images/fan.jpg" height="250px" width="250px" class="img10">
-                <div class="button">
-                    <h3>fan</h3>
-                    <h4>£ 50</h4>
-                    <input type="submit" name="fan" value="add to cart" class="btn">
-                </div>
-            </td><br>
-        </tr>
-
-
+        </tr> -->
     </table>
-    <script>
+    <!-- </form> -->
+
+    <script type="text/javascript">
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("mybtn");
         var closebtn = document.getElementById("closebtn");
@@ -281,7 +262,42 @@ h4{
         closebtn.onclick = function () {
             modal.style.display = "none";
         }
-        document.getElementById("myModal").style.display = "none"
+        document.getElementById("myModal").style.display = "none";
+
+
+        function addtoCart(pid, pcost) {
+            console.log("pid##", pid, pcost)
+            var data1 = {
+                "productId": pid,
+                "productCost": pcost
+            }
+            // fetch('http://localhost:3000/addTocart', {
+            //     method: 'POST',
+            //     body: JSON.stringify({"name":"abc"}),
+            //     headers: {
+            //         'Content-type': 'application/json'
+            //     }
+            // })
+            //     .then(response => response.json())
+            //     .then(json => {
+            //         console.log(json);
+            //     });
+            $.ajax({
+
+                url: "http://localhost:3000/addTocart",
+                enctype: 'application/json',
+                data: data1,
+                method: "POST",
+                success: function () {
+                    alert("Successfully added in cart")
+                },
+                error: function () {
+                    alert("Oops. Something went wrong")
+                }
+            })
+        }
+
+
 
     </script>
 

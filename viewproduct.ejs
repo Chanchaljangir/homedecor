@@ -80,8 +80,9 @@
             <td><img src="/<%=rs.productimgurl %>" height="150px" width="150px" class="img5"></td>
             <td><a href="updateproduct?pid=<%=rs.productid %>"><button class="edit"><img src="./images/edit icon.jpg"
                     width="20" height="20" alt="" class="img"></button></a></td>
-            <td><a href="deleteproduct?pid=<%=rs.productid %>" onclick='return checkdelete()'><button class="delete"><img
-                    src="./images/deleteicon.png" width="20" height="20" alt="" class="img"></button></a></td>
+            <td><a href="deleteproduct?pid=<%=rs.productid %>" onclick='return checkdelete()'><button
+                  class="delete"><img src="./images/deleteicon.png" width="20" height="20" alt=""
+                    class="img"></button></a></td>
 
           </tr>
           <%})%>
