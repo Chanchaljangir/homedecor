@@ -95,13 +95,15 @@ nav .submenu{
     padding: 50px;
 }
 .box-4col .box{
-   width: 25%;
    display: inline-block;
+   padding: 20px;
+    box-sizing: border-box;
 }
 .box-in {
     text-align: center;
     padding: 20px;
     color: black;
+    border: 1px double;
 }
 .box-in a{
     text-decoration: none;
@@ -118,4 +120,32 @@ nav .submenu{
 }
 .thank-box a{
     color: #fff;
+}
+.modal {
+    margin: auto!important;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button[id=closebtn],button[name=btnregsubmit],
+input[name=btnsignin] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+}
+
+.nm-tag{
+    color: #fff;
+    background-color: pink;
+    padding: 3px;
+}
+.contact.us a {
+    color: #fff;
+    margin-top: 10px;
+    display: inline-block;
 }

@@ -86,11 +86,11 @@ h4{
             width: 350px;
             height: 330px;
             display: none;
-
+            left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
             position: fixed;
-            margin-left: 500px;
-            margin-top: 100px;
-
+           margin: auto;
             background-color: gray;
             padding: 10px;
 
@@ -99,20 +99,21 @@ h4{
         .regModal {
             border: 1px solid black;
             width: 350px;
-            height: 330px;
+            min-height: 330px;
             display: none;
 
             position: fixed;
-            margin-left: 500px;
-            margin-top: 100px;
-
+            left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+margin: auto;
             background-color: gray;
             padding: 10px;
 
         }
 
-        input[name=txtemail],
-        input[name=txtpass] {
+        
+        input{
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -121,7 +122,7 @@ h4{
             box-sizing: border-box;
         }
 
-        button[id=closebtn],
+        button[id=closebtn],button[name=btnregsubmit],
         input[name=btnsignin] {
             background-color: #04AA6D;
             color: white;
@@ -198,7 +199,7 @@ h4{
     </div>
     <section>
 
-        <table border="1px" class="border">
+        <!-- <table border="1px" class="border">
 
             <tr>
 
@@ -274,12 +275,48 @@ h4{
             </tr>
 
 
-        </table>
+        </table> -->
         <div class="box-4col">
             <div class="box">
                 <div class="box-in">
-                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                    <a href="javascript:void(0);" class="link">
+                    <img src="/images/bedsheet1.jpg" height="280px" width="280px" class="img1">
+                    <a href="bdouble" class="link">
+                        <h3>Bedsheets Double</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/bedsheet-single.jpeg" height="280px" width="280px" class="img1">
+                    <a href="bsmall" class="link">
+                        <h3>Bedsheets Single</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/duvet1.jpg" height="280px" width="280px" class="img1">
+                    <a href="ddouble" class="link">
+                        <h3>Duvet Cover double</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/duvet-single.jpg" height="280px" width="280px" class="img1">
+                    <a href="dsmall" class="link">
+                        <h3>Duvet Cover Single</h3>
+                    </a>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="box-in">
+                    <img src="/images/curtain3.jpg" height="280px" width="280px" class="img1">
+                    <a href="curtains" class="link">
                         <h3>Curtain</h3>
                     </a>
                 </div>
@@ -287,63 +324,27 @@ h4{
             </div>
             <div class="box">
                 <div class="box-in">
-                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                    <a href="javascript:void(0);" class="link">
-                        <h3>Curtain</h3>
+                    <img src="/images/clock1.jpg" height="280px" width="280px" class="img1">
+                    <a href="clock" class="link">
+                        <h3>Clock</h3>
                     </a>
                 </div>
 
             </div>
             <div class="box">
                 <div class="box-in">
-                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                    <a href="javascript:void(0);" class="link">
-                        <h3>Curtain</h3>
+                    <img src="/images/mirror.jpg" height="280px" width="280px" class="img1">
+                    <a href="mirrors" class="link">
+                        <h3>Mirror</h3>
                     </a>
                 </div>
 
             </div>
             <div class="box">
                 <div class="box-in">
-                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                    <a href="javascript:void(0);" class="link">
-                        <h3>Curtain</h3>
-                    </a>
-                </div>
-
-            </div>
-            <div class="box">
-                <div class="box-in">
-                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                    <a href="javascript:void(0);" class="link">
-                        <h3>Curtain</h3>
-                    </a>
-                </div>
-
-            </div>
-            <div class="box">
-                <div class="box-in">
-                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                    <a href="javascript:void(0);" class="link">
-                        <h3>Curtain</h3>
-                    </a>
-                </div>
-
-            </div>
-            <div class="box">
-                <div class="box-in">
-                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                    <a href="javascript:void(0);" class="link">
-                        <h3>Curtain</h3>
-                    </a>
-                </div>
-
-            </div>
-            <div class="box">
-                <div class="box-in">
-                    <img src="/images/curtain.jpg" height="280px" width="280px" class="img1">
-                    <a href="javascript:void(0);" class="link">
-                        <h3>Curtain</h3>
+                    <img src="/images/images/candles.jpg" height="280px" width="280px" class="img1">
+                    <a href="candles" class="link">
+                        <h3>Candles</h3>
                     </a>
                 </div>
 
