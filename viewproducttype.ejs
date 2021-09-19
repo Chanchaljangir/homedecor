@@ -42,9 +42,9 @@
                 <td><%=rs.producttypename %></td>
                 <td><%=rs.sizeid %></td>
                 <td><a href="updateproducttype?producttypeid=<%=rs.producttypeid%>"><button class="edit"><img src="./images/edit icon.jpg" width="20" height="20" alt="" class="img"></button></a></td>
-                <td><a href="deleteproduct"  onclick='return checkdelete()'><button class="delete"><img src="./images/deleteicon.png"width="20" height="20" alt="" class="img"></button></a></td>
+                <td><a href="deleteproducttype?producttypeid=<%=rs.producttypeid %>"  onclick='return checkdelete()'><button class="delete"><img src="./images/deleteicon.png"width="20" height="20" alt="" class="img"></button></a></td>
 
-              </tr>
+              </tr> 
 
               <%})%>
             </tbody>

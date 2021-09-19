@@ -183,7 +183,7 @@ h4{
     <b style="margin-left: 50%;">Shipping-Charges :£ 50</b><br>
     <b style="margin-left: 50%;">Total :£ 850</b><br><br>
 
-    <button class="mybutton" style="margin-left: 50%;" onclick='return paymentGetway("20","50")'>Placed
+    <button class="mybutton" style="margin-left: 50%;" onclick='return paymentGetway("20")'>Placed
         Order</button>
 
     <script type="text/javascript">
@@ -217,13 +217,29 @@ h4{
                 }
             })
         }
-        function paymentGetway(cid, price) {
+
+        var totalPrice = "";
+        getCartItems();
+        function getCartItems() {
+            $.ajax({
+                url: "http://localhost:3000/subtotalCartItem",
+                enctype: 'application/json',
+                type: "GET",
+            }).done(function (data) {
+                // console.log("data",data);
+                console.log(data[0].subTotal)
+                totalPrice = data[0].subTotal;
+            });
+        }
+
+        function paymentGetway(cid) {
+            console.log("totalPrice",totalPrice);
             var data1 = {
                 "cartId": cid,
-                "price": price
+                "price": totalPrice
             }
             $.ajax({
-                url: "http://localhost:3000/paymentGetway",
+                 url: "http://localhost:3000/paymentGetway",
                 enctype: 'application/json',
                 type: "POST",
                 // dataType:'json',
