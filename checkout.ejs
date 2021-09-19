@@ -161,6 +161,7 @@ h4{
             <th>Rate</th>
             <th>Total</th>
             <th>Remove</th>
+            <th>Place Order</th>
         </tr>
         <% results.forEach(function(rs){ %>
             <tr>
@@ -175,6 +176,8 @@ h4{
                 <td>£ <%=rs.ptotal %>
                 </td>
                 <td><button class="mybutton" onclick='return cartItemRemove("<%=rs.cartId %>")'>Remove</button></td>
+                <td> <button class="mybutton" style="margin-left: 50%;" onclick='return paymentGetway("<%=rs.cartId %>","<%=rs.price %>")'>Placed
+                    Order</button></td>
             </tr>
             <%})%>
     </table><br>
@@ -183,8 +186,8 @@ h4{
     <b style="margin-left: 50%;">Shipping-Charges :£ 50</b><br>
     <b style="margin-left: 50%;">Total :£ 850</b><br><br>
 
-    <button class="mybutton" style="margin-left: 50%;" onclick='return paymentGetway("20")'>Placed
-        Order</button>
+    <!-- <button class="mybutton" style="margin-left: 50%;" onclick='return paymentGetway()'>Placed
+        Order</button> -->
 
     <script type="text/javascript">
         var modal = document.getElementById("myModal");
@@ -232,14 +235,35 @@ h4{
             });
         }
 
-        function paymentGetway(cid) {
+        var cIds;
+        cIds = new Array();
+        getCartItemsIds();
+        function getCartItemsIds() {
+            $.ajax({
+                url: "http://localhost:3000/cartItemIds",
+                enctype: 'application/json',
+                type: "GET",
+            }).done(function (data) {
+                // console.log("data",data);
+                console.log("ids",data)
+                data.forEach(element => {
+                    cIds.push(element.id);
+                    console.log(cIds);
+                });
+                // totalPrice = data[0].subTotal;
+            });
+        }
+
+        function paymentGetway1() {
             console.log("totalPrice",totalPrice);
+            console.log("cIds pay",cIds);
             var data1 = {
-                "cartId": cid,
+                "cartId": cIds,
+                "cIdLength": cIds.length,
                 "price": totalPrice
             }
             $.ajax({
-                 url: "http://localhost:3000/paymentGetway",
+                url: "http://localhost:3000/paymentGetway",
                 enctype: 'application/json',
                 type: "POST",
                 // dataType:'json',
@@ -253,6 +277,24 @@ h4{
                 // error: function () {
                 //     alert("Oops. Something went wrong")
                 // }
+            }).done(function (data) {
+                window.location.replace(data, '_blank');
+            });
+        }
+
+        function paymentGetway(cid,price) {
+            console.log("totalPrice",totalPrice);
+            console.log("cIds pay",cIds);
+            var data1 = {
+                "cartId": cid,
+                "price": price
+            }
+            $.ajax({
+                url: "http://localhost:3000/paymentGetway",
+                enctype: 'application/json',
+                type: "POST",
+                // dataType:'json',
+                data: data1,
             }).done(function (data) {
                 window.location.replace(data, '_blank');
             });
