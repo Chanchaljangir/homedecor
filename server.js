@@ -597,7 +597,8 @@ app.post('/editproduct', function (req, res, next) {
       let query = conn.query(sql, function (err, myresults) {
         if (err) throw err;
 
-        res.send("Success, updated!" + req.body.producttype);
+        // res.send("Success, updated!" + req.body.producttype);
+        res.redirect("viewproduct");
       });
     }
   })
@@ -756,7 +757,20 @@ app.get('/deleteproduct', function (req, res) {
     }
   });
 });
+app.get('/deleteproducttype', function (req, res) {
 
+  console.log("req.query.pid", req.query.producttypeid);
+  let sql = "DELETE from producttype where producttypeid=" + req.query.producttypeid;
+  let query = conn.query(sql, function (err, myresults) {
+    if (err) {
+      res.json("Parent row cannot delete or update")
+      throw err
+    }
+    else {
+      res.redirect("viewproducttype");
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
