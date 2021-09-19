@@ -453,6 +453,18 @@ app.get("/viewCart", function (req, res, next) {
   })
 })
 
+app.get("/subtotalCartItem", function (req, res, next) {
+  console.log("req.body######## ", req.cookies.email);
+  var userEmail = req.cookies.email
+  let sql = `select sum(price) as subTotal from cart where isOrderd=false And userEmail="${userEmail}"`;
+  let query = conn.query(sql, function (err, myresults) {
+    let query = conn.query(sql, function (err, myresults) {
+      if (err) throw err;
+      res.send(myresults);
+    });
+  })
+})
+
 app.get("/viewCheckout", function (req, res, next) {
   console.log("req.body######## ", req.cookies.email);
   var userEmail = req.cookies.email
@@ -480,7 +492,8 @@ app.post("/cartItemRemovee", function (req, res) {
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     else {
-      res.send("Success add in cart");
+      // res.send("Success add in cart");
+      res.redirect("viewCheckout");
     }
   });
 })
@@ -499,7 +512,7 @@ app.post("/paymentGetway", async function (req, res) {
     appId: CashFree_AppId,
     secretKey: CashFree_SecretKey,
     orderId: orderId,
-    orderAmount: 50,
+    orderAmount: req.body.price,
     orderCurrency: 'INR',
     orderNote: 'item price payment',
     customerEmail: userEmail,
