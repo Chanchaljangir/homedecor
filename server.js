@@ -602,7 +602,7 @@ app.post("/paymentGetway", async function (req, res) {
     customerEmail: userEmail,
     customerName: "Chanchal",
     customerPhone: "97453657999",
-    returnUrl: 'http://localhost:3000/placedorder',
+    returnUrl: 'http://theluxehomehub.com/thankyou/',
   }
   let url = 'https://test.cashfree.com/api/v1/order/create'
   await axios.post(url, qs.stringify(postData), {
@@ -860,16 +860,21 @@ app.get('/deleteproduct', function (req, res) {
 app.get('/deleteproducttype', function (req, res) {
 
   console.log("req.query.pid", req.query.producttypeid);
-  let sql = "DELETE from producttype where producttypeid=" + req.query.producttypeid;
-  let query = conn.query(sql, function (err, myresults) {
-    if (err) {
-      res.json("Parent row cannot delete or update")
-      throw err
-    }
-    else {
-      res.redirect("viewproducttype");
-    }
-  });
+  try {
+    let sql = "DELETE from producttype where producttypeid=" + req.query.producttypeid;
+    let query = conn.query(sql, function (err, myresults) {
+      if (err) {
+        res.json("Parent row cannot delete or update")
+        throw err
+      }
+      else {
+        res.redirect("viewproducttype");
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
 });
 
 app.listen(port, () => {
