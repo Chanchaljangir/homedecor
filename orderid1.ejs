@@ -9,25 +9,26 @@
     <link rel="stylesheet" href="./css/homepage.css" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
-        body{
-            
+        body {
+
             background-size: cover;
-            background-attachment: fixed; 
-            background-position: center;   
-            background-color:white;
-            
+            background-attachment: fixed;
+            background-position: center;
+            background-color: white;
+
         }
-        footer{
+
+        footer {
             margin-top: 21%;
-            
-            background-color:brown;
+
+            background-color: brown;
         }
-        
-        .center
-        {
-            position:center;
+
+        .center {
+            position: center;
         }
-        .btn{
+
+        .btn {
             display: inline-block;
             background: #ff523b;
             color: #fff;
@@ -38,38 +39,39 @@
             align-items: center;
         }
 
-        .btn:hover{
+        .btn:hover {
             background: #563434;
         }
 
-/*h3{
+        /*h3{
     text-align: center;
 }
 
 h4{
     text-align: center;
 }*/
-        .button{
+        .button {
             text-align: center;
-            
+
         }
 
-        .modal{
+        .modal {
             border: 1px solid black;
             width: 350px;
             height: 330px;
             display: none;
-           
+
             position: fixed;
             margin-left: 500px;
             margin-top: 100px;
-           
+
             background-color: gray;
             padding: 10px;
-            
-        } 
-        
-        input[name=txtemail], input[name=txtpass] {
+
+        }
+
+        input[name=txtemail],
+        input[name=txtpass] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -78,18 +80,18 @@ h4{
             box-sizing: border-box;
         }
 
-        button[id=closebtn],input[name=btnsignin] {
+        button[id=closebtn],
+        input[name=btnsignin] {
             background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 40%;
-}
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 40%;
+        }
 
-        #mybtn
-        {
+        #mybtn {
             padding: 2px 10px;
             color: white;
             outline: none;
@@ -98,24 +100,23 @@ h4{
             background-color: transparent;
         }
 
-        .table
-        {
+        .table {
             margin: 0 auto;
             margin-top: 5%;
             background-color: pink;
-           
+
         }
-        </style>
+    </style>
 
 </head>
 
 <body>
-   
+
     <div class="modal" id="myModal">
         <h1>Sign In</h1>
         <div class="modal-content">
             <label>Email : </label>
-            <input type="text" name="txtemail" ><br><br>
+            <input type="text" name="txtemail"><br><br>
             <label>Password :</label>
             <input type="password" name="txtpass"><br>
             <input type="submit" name="btnsignin" value="Sign In">
@@ -125,8 +126,8 @@ h4{
         </div>
     </div>
 
-    <table border="1px" class="table" >
-        
+    <table border="1px" class="table">
+
         <tr>
             <th>Item ID</th>
             <th>Item name</th>
@@ -135,61 +136,50 @@ h4{
             <th>Unit price</th>
             <th>Total Amount</th>
         </tr>
-        
-        <tr>
-            <td>1</td>
-            <td>Frame</td>
-            <td><img src="/images/frame.jpg" height="150px" width="150px" class="img5"></td>
-            <td>2</td>
-            <td>£ 50</td>
-            <td>£ 100</td>
-        </tr>
-
-        <tr>
-            <td>2</td>
-            <td>Port</td>
-            <td><img src="/images/port.jpg" height="150px" width="150px" class="img5"></td>
-            <td>4</td>
-            <td>£ 50</td>
-            <td>£ 200</td>
-        </tr>
-
-        <tr>
-            <td>3</td>
-            <td>Table</td>
-            <td><img src="/images/table.jpg" height="150px" width="150px" class="img5"></td>
-            <td>1</td>
-            <td>£ 100</td>
-            <td>£ 100</td>
-        </tr>
+        <% results.forEach(function(rs){ %>
+            <tr>
+                <td>
+                    <%=rs.cartId %>
+                </td>
+                <td>
+                    <%=rs.brand %> - <%=rs.producttypename %>
+                </td>
+                <td><img src="<%=rs.pImg %>" height="150px" width="150px" class="img5"></td>
+                <td>
+                    <%=rs.Quantity %>
+                </td>
+                <td>£ <%=rs.price %>
+                </td>
+                <td>£ <%=rs.ptotal %>
+                </td>
+            </tr>
+            <%})%>
 
     </table>
-    
+
     <script>
         var modal = document.getElementById("myModal");
-                    var btn = document.getElementById("mybtn");
-                    var closebtn=document.getElementById("closebtn");
+        var btn = document.getElementById("mybtn");
+        var closebtn = document.getElementById("closebtn");
 
-                   function openpopup()
-                    {       
-                        modal.style.display="block";
-                    }
-                    closebtn.onclick = function()
-                    {
-                        modal.style.display="none";
-                    }
+        function openpopup() {
+            modal.style.display = "block";
+        }
+        closebtn.onclick = function () {
+            modal.style.display = "none";
+        }
 
     </script>
-  
-   
+
+
     <footer>
         <div class="contact us">
             <a href="contactus" style="margin-left: 48%;">Contact Us</a>
             <a href="aboutus" style="margin-left: 10px;">About Us</a>
             <a href="help" style="margin-left: 10px;">Help</a><br><br>
-        
-        <i class="fa fa-facebook fa-2x" aria-hidden="true" style="margin-left: 50%;"></i>
-        <i class="fa fa-google fa-2x" aria-hidden="true" style="margin-left: 10px;"></i>
+
+            <i class="fa fa-facebook fa-2x" aria-hidden="true" style="margin-left: 50%;"></i>
+            <i class="fa fa-google fa-2x" aria-hidden="true" style="margin-left: 10px;"></i>
         </div>
     </footer>
 </body>
