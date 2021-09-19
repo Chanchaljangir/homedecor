@@ -498,14 +498,13 @@ app.post("/paymentGetway", async function (req, res) {
     appId: CashFree_AppId,
     secretKey: CashFree_SecretKey,
     orderId: orderId,
-    orderAmount: req.body.price,
+    orderAmount: 50,
     orderCurrency: 'INR',
     orderNote: 'item price payment',
     customerEmail: userEmail,
     customerName: "Chanchal",
     customerPhone: "97453657999",
     returnUrl: 'http://localhost:3000/placedorder',
-    // notifyUrl: 'https://epicapi.mastersunion.org/api/org/' + getdue.organizationId + '/stu/' + getdue.studentId + '/feeDueId/' + getdue.id + '/orderId/' + orderId + '/updateFeeAfterPaymentReturnUrl',
   }
   let url = 'https://test.cashfree.com/api/v1/order/create'
   await axios.post(url, qs.stringify(postData), {
@@ -514,7 +513,14 @@ app.post("/paymentGetway", async function (req, res) {
     },
   }).then(async (result) => {
     console.log("then result is############################################ ", result.data)
-  })
+    console.log(result.data.paymentLink)
+    // res.redirect(result.data.paymentLink)
+    res.send(result.data.paymentLink)
+  }).catch((err) => {
+    console.log("catch err is ", err);
+    let paymentLink = err.response.data
+    console.log("paymentLink", paymentLink);
+  });
 })
 
 app.post('/btnregsubmit', function (req, res) {

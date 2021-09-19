@@ -217,9 +217,10 @@ h4{
                 }
             })
         }
-        function paymentGetway(cid) {
+        function paymentGetway(cid, price) {
             var data1 = {
-                "cartId": cid
+                "cartId": cid,
+                "price": price
             }
             $.ajax({
                 url: "http://localhost:3000/paymentGetway",
@@ -227,13 +228,18 @@ h4{
                 type: "POST",
                 // dataType:'json',
                 data: data1,
-                success: function () {
-                    alert("Item deleted successfully, Reload the page")
-                },
-                error: function () {
-                    alert("Oops. Something went wrong")
-                }
-            })
+
+                // success: function (data) {
+                //     console.log("data",data);
+                //     // alert("Item deleted successfully, Reload the page")
+                //     window.location.replace("https://payments-test.cashfree.com/order/#Mij93iHYjYdHdh1iVUX5", '_blank');
+                // },
+                // error: function () {
+                //     alert("Oops. Something went wrong")
+                // }
+            }).done(function (data) {
+                window.location.replace(data, '_blank');
+            });
         }
     </script>
 
