@@ -94,15 +94,14 @@ nav .submenu{
     padding: 100px;
 }
 .box-4col .box{
-   display: inline-block;
-   padding: 20px;
+    display: inline-block;
+    padding: 15px;
     box-sizing: border-box;
+    border: 3px double;
 }
 .box-in {
     text-align: center;
-    padding: 20px;
     color: black;
-    border: 1px double;
 }
 .box-in a{
     text-decoration: none;
