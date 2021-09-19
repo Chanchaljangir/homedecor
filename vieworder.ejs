@@ -6,16 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/viewcoustomer.css" type="text/css">
-    <link rel="stylesheet" href="/css/homepage.css"type="text/css">
+    <link rel="stylesheet" href="/css/homepage.css" type="text/css">
     <style type="text/css">
-        body{
+        body {
             background-image: url(images/bg2.jpg);
             background-size: cover;
-            background-attachment: fixed; 
-            background-position: center;   
+            background-attachment: fixed;
+            background-position: center;
         }
-        </style>
+    </style>
 </head>
 
 <body>
@@ -27,37 +29,72 @@
         <table class="table table-striped" id="mytable" border="1">
             <h2>Details of Orders</h2>
             <thead>
-            <tr height="10px" width="20px">
-                <th>Order Id</th>
-                <th>Customer Email</th>
-                <th>Date of purchase</th>
-                <th>Order Status</th>
-                <th>Order Amount</th>
-                <th>Change Status</th>
-            </tr>
+                <tr height="10px" width="20px">
+                    <th>Order Id</th>
+                    <th>Customer Email</th>
+                    <th>Product Name</th>
+                    <th>Order Status</th>
+                    <th>Order Amount</th>
+                    <th>Change Status</th>
+                </tr>
             </thead>
             <tbody>
-                <%
-                results.forEach(function(rs){
-                %>
-              <tr height="10px" width="20px">
-                <td><a href="orderdetails?orderid=<%=rs.orderid%>"><%=rs.orderid %></a></td>
-                <td><%=rs.email %></td>
-                <td><%=rs.dateofpurchase %></td>
-                <td><%=rs.orderstatus %></td>
-                <td><%=rs.orderamount %></td>
-                <td><select class="option" name="changestatus">
-                    <option disabled="disabled" selected="selected">--Choose option--</option>
-                    <option>Panding</option>
-                    <option>Cancel</option>
-                    <option>Delivered</option>
-                </select>
-                </td>
-              </tr>
-              <%})%>
-              
+                <% results.forEach(function(rs){ %>
+                    <tr height="10px" width="20px">
+                        <!-- <td><a href="orderdetails?orderid=<%=rs.orderid%>"><%=rs.cartId %></a></td> -->
+                        <td>
+                            <%=rs.cartId %>
+                        </td>
+                        <td>
+                            <%=rs.userEmail %>
+                        </td>
+                        <td>
+                            <%=rs.brand %> - <%=rs.producttypename %>
+                        </td>
+                        <td>
+                            <%=rs.status %>
+                        </td>
+                        <td>
+                            <%=rs.ptotal %>
+                        </td>
+                        <td><select class="option" name="changestatus" id="sChangeId"
+                                onchange='return changeStatus("<%=rs.cartId %>")'>
+                                <option disabled="disabled" selected="selected">--Choose option--</option>
+                                <option value="pending">Panding</option>
+                                <option value="cancel">Cancel</option>
+                                <option value="delivered">Delivered</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <%})%>
+
             </tbody>
         </table>
     </div>
+    <script type="text/javascript">
+        function changeStatus(st) {
+            var e = document.getElementById("sChangeId");
+            var schange = e.value;
+            console.log(st, schange);
+            var data1 = {
+                "cartId": st,
+                "cstatus": schange
+            }
+            $.ajax({
+                url: "http://localhost:3000/cartStatusChange",
+                enctype: 'application/json',
+                type: "POST",
+                // dataType:'json',
+                data: data1,
+                success: function (data) {
+                    alert("Status changed, Reload the page")
+                  },
+                error: function () {
+                    alert("Oops. Something went wrong")
+                }
+            })
+        }
+    </script>
 </body>
+
 </html>
