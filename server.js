@@ -429,7 +429,7 @@ app.post("/addTocart", function (req, res, next) {
   console.log("req.body######## ", req.cookies.email);
   var userEmail = req.cookies.email
   // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
-  let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false, userEmail='${userEmail}'`;
+  let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false, userEmail='${userEmail}, status="pending"'`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     else {
@@ -821,13 +821,19 @@ app.get('/viewcustomer', function (req, res) {
 
 
 app.get('/vieworder', function (req, res) {
-  let sql = "SELECT * FROM ordermaster";
+  var userEmail = req.cookies.email
+  // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
+  let sql = `select c.id as cartId, c.status as status, p.productimgurl as pImg, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from homedecor.cart as c inner join homedecor.products as p on p.productid = c.productid 
+  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  where isOrderd=true group by c.productId`;
   let query = conn.query(sql, function (err, myresults) {
-    if (err) throw err;
-    res.render(__dirname + '/vieworder.ejs', {
-      results: myresults
+    let query = conn.query(sql, function (err, myresults) {
+      if (err) throw err;
+      res.render(__dirname + '/vieworder', {
+        results: myresults
+      });
     });
-  });
+});
 });
 
 
@@ -860,7 +866,7 @@ app.get('/deleteproduct', function (req, res) {
 app.get('/deleteproducttype', function (req, res) {
 
   console.log("req.query.pid", req.query.producttypeid);
-  try {
+  try{
     let sql = "DELETE from producttype where producttypeid=" + req.query.producttypeid;
     let query = conn.query(sql, function (err, myresults) {
       if (err) {
@@ -871,12 +877,23 @@ app.get('/deleteproducttype', function (req, res) {
         res.redirect("viewproducttype");
       }
     });
-  } catch (err) {
+  }catch(err){
     console.log(err);
   }
-
+ 
 });
 
+app.post('/cartStatusChange', function (req, res) {
+  var userEmail = req.cookies.email
+  // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
+  sql = `update cart set status = '${req.body.cstatus}' where id = ${req.body.cartId}`;
+  let query = conn.query(sql, function (err, myresults) {
+    let query = conn.query(sql, function (err, myresults) {
+      if (err) throw err;
+      res.send('success')
+    });
+});
+});
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });
