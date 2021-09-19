@@ -123,7 +123,21 @@ app.get('/signhome', function (req, res) {
 
 
 app.get('/myorder', function (req, res) {
-  res.render(__dirname + "/myorder");
+  var userEmail = req.cookies.email
+  // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
+  let sql = `select c.id as cartId, p.productimgurl as pImg, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from homedecor.cart as c inner join homedecor.products as p on p.productid = c.productid 
+  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  where isOrderd=true 
+  And userEmail="${userEmail}"
+   group by c.productId`;
+  let query = conn.query(sql, function (err, myresults) {
+    let query = conn.query(sql, function (err, myresults) {
+      if (err) throw err;
+      res.render(__dirname + '/orderid1', {
+        results: myresults
+      });
+    });
+  })
 });
 
 
