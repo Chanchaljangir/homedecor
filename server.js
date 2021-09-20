@@ -298,30 +298,30 @@ app.get('/dsmall', function (req, res) {
     }
   });
 });
+// app.get('/clock', function (req, res) {
+//   var userEmail = req.cookies.email
+//   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+//   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+//   inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Clock" AND sizename="Small"`;
+//   let query = conn.query(sql, function (err, myresults) {
+//     if (err) throw err;
+//     if (userEmail == "" || userEmail == undefined) {
+//       res.render(__dirname + '/curtain', {
+//         results: myresults
+//       });
+//     }
+//     else {
+//       res.render(__dirname + '/afterSignInCurtain', {
+//         results: myresults
+//       });
+//     }
+//   });
+// });
 app.get('/clock', function (req, res) {
   var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Clock" AND sizename="Small"`;
-  let query = conn.query(sql, function (err, myresults) {
-    if (err) throw err;
-    if (userEmail == "" || userEmail == undefined) {
-      res.render(__dirname + '/curtain', {
-        results: myresults
-      });
-    }
-    else {
-      res.render(__dirname + '/afterSignInCurtain', {
-        results: myresults
-      });
-    }
-  });
-});
-app.get('/clock', function (req, res) {
-  var userEmail = req.cookies.email
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Clock" AND sizename="Small" AND sizename="Double"`;
+  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Clock" AND (sizename="Small" OR sizename="Double")`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -340,7 +340,7 @@ app.get('/mirrors', function (req, res) {
   var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Mirrors" AND sizename="Small" AND sizename="Double"`;
+  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Mirrors" AND (sizename="Small" OR sizename="Double")`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -359,7 +359,7 @@ app.get('/candles', function (req, res) {
   var userEmail = req.cookies.email
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
   inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Candles" AND sizename="Small" AND sizename="Double"`;
+  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Candles" AND (sizename="Small" OR sizename="Double")`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -424,12 +424,24 @@ app.get('/btnsignin', function (req, res) {
   });
 });
 
+// add to cart old 
+// app.post("/addTocart", function (req, res, next) {
+//   console.log("req.body######## ", req.cookies.email);
+//   var userEmail = req.cookies.email
+//   let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false, userEmail='${userEmail}, status="pending"'`;
+//   let query = conn.query(sql, function (err, myresults) {
+//     if (err) throw err;
+//     else {
+//       res.send("Success add in cart");
+//     }
 
+//   });
+// })
 app.post("/addTocart", function (req, res, next) {
   console.log("req.body######## ", req.cookies.email);
   var userEmail = req.cookies.email
   // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
-  let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false, userEmail='${userEmail}, status="pending"'`;
+  let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false, userEmail='${userEmail}', status="pending"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     else {
@@ -447,7 +459,7 @@ app.post("/addTocart", function (req, res, next) {
     // res.send("Success, Image uploaded!" + req.body.producttype);
   });
 })
-
+// add to cart old END
 app.get("/viewCart", function (req, res, next) {
   console.log("req.body######## ", req.cookies.email);
   var userEmail = req.cookies.email
