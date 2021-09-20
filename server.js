@@ -14,7 +14,7 @@ var cookieParser = require('cookie-parser');
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '123456',
+  password: 'Chanchal',
   database: 'homedecor',
 
   // multipleStatements: true
@@ -424,6 +424,17 @@ app.get('/btnsignin', function (req, res) {
   });
 });
 
+app.get('/changePassword', function (req, res) {
+  let email = req.query.txtemail;
+  let pass = req.query.txtpass;
+  // let sql = "SELECT * FROM users WHERE email='" + email + "' and password='" + pass + "'";
+  let sql = `Update users set password = '${pass}' where email='${email}'`;
+  let query = conn.query(sql, function (err, myresults) {
+    if (err) throw err;
+    console.log(myresults.length);
+    res.redirect("home");
+  });
+});
 // add to cart old 
 // app.post("/addTocart", function (req, res, next) {
 //   console.log("req.body######## ", req.cookies.email);
@@ -845,7 +856,7 @@ app.get('/vieworder', function (req, res) {
         results: myresults
       });
     });
-});
+  });
 });
 
 
@@ -878,7 +889,7 @@ app.get('/deleteproduct', function (req, res) {
 app.get('/deleteproducttype', function (req, res) {
 
   console.log("req.query.pid", req.query.producttypeid);
-  try{
+  try {
     let sql = "DELETE from producttype where producttypeid=" + req.query.producttypeid;
     let query = conn.query(sql, function (err, myresults) {
       if (err) {
@@ -889,10 +900,10 @@ app.get('/deleteproducttype', function (req, res) {
         res.redirect("viewproducttype");
       }
     });
-  }catch(err){
+  } catch (err) {
     console.log(err);
   }
- 
+
 });
 
 app.post('/cartStatusChange', function (req, res) {
@@ -904,7 +915,7 @@ app.post('/cartStatusChange', function (req, res) {
       if (err) throw err;
       res.send('success')
     });
-});
+  });
 });
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

@@ -228,7 +228,7 @@ h4{
                 <button id="closebtn">close</button><br>
                 <!-- <a href="register">Create Account</a> -->
                 <a href="javascript:void(0)" onclick='return showRegtrationModel()'>Create Account</a>
-                <a href="forgotpassword">Forgot Password</a>
+                <a href="javascript:void(0)" onclick='return changePasswordModel()'>Forgot Password</a>
             </form>
 
         </div>
@@ -250,6 +250,23 @@ h4{
                 <input type="submit" name="btnregsubmit" value="Submit">
                 <a href="back">Back</a>
             </form>
+        </div>
+    </div>
+
+    <div class="modal" id="changePassModel">
+        <h1>Sign In</h1>
+        <div class="modal-content">
+            <form action="/changePassword" method="GET">
+
+                <label>Email : </label>
+                <input type="text" name="txtemail" required /><br><br>
+                <label>Changes Password :</label>
+                <input type="password" name="txtpass" required /><br>
+                <input type="submit" name="btnsignin" id="signinBtn" value="Save">
+
+                <button id="closebtn">close</button><br>
+            </form>
+
         </div>
     </div>
     <script>
@@ -274,6 +291,11 @@ h4{
         function showRegtrationModel() {
             modal.style.display = "none";
             var modal1 = document.getElementById("registerationModal");
+            modal1.style.display = "block";
+        }
+        function changePasswordModel(){
+            modal.style.display = "none";
+            var modal1 = document.getElementById("changePassModel");
             modal1.style.display = "block";
         }
     </script>
