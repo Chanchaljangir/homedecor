@@ -399,7 +399,8 @@ app.get('/clocks', function (req, res) {
 app.get('/btnsignin', function (req, res) {
   let email = req.query.txtemail;
   let pass = req.query.txtpass;
-  let sql = "SELECT * FROM users WHERE email='" + email + "' and password='" + pass + "'";
+  let sql = "SELECT * FROM users WHERE email='" + email + "' and password='" + pass + "' and userType='user'";
+  // let sql = `SELECT * FROM users WHERE email='" + email + "' and password='" + pass + "'`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     console.log(myresults.length);
@@ -648,7 +649,7 @@ app.post("/paymentGetway", async function (req, res) {
 })
 
 app.post('/btnregsubmit', function (req, res) {
-  let data = { firstname: req.body.txtfn, lastname: req.body.txtln, mobileno: req.body.txtmn, email: req.body.txtemail, password: req.body.txtpass };
+  let data = { firstname: req.body.txtfn, lastname: req.body.txtln, mobileno: req.body.txtmn, email: req.body.txtemail, password: req.body.txtpass, userType: 'user' };
   let sql = "INSERT INTO users SET ?";
   let query = conn.query(sql, data, function (err, results) {
     if (err) {
@@ -681,9 +682,54 @@ app.get('/btnforgotpass', function (req, res) {
 //admin section start from here.
 
 app.get('/admin', function (req, res) {
-  res.render(__dirname + "/homepage");
+  res.render(__dirname + "/adminLogin");
+  // res.render(__dirname + "/homepage");
 });
 
+app.post('/btnAdminregsubmit', function (req, res) {
+  let data = { firstname: req.body.txtfn, lastname: req.body.txtln, mobileno: req.body.txtmn, email: req.body.txtemail, password: req.body.txtpass, userType: 'admin' };
+  let sql = "INSERT INTO users SET ?";
+  let query = conn.query(sql, data, function (err, results) {
+    if (err) {
+      res.send("User with " + req.body.txtemail + " email it already registed");
+      // throw err;
+    } else {
+      // registerMsg
+      res.render(__dirname + '/adminRegisterMsg', {
+        results: "You successfullt registered"
+      });
+      // res.render(__dirname + "/reg");
+    }
+  });
+});
+app.get('/btnAdminsignin', function (req, res) {
+  let email = req.query.txtemail;
+  let pass = req.query.txtpass;
+  let sql = "SELECT * FROM users WHERE email='" + email + "' and password='" + pass + "' and userType='admin'";
+  // let sql = `SELECT * FROM users WHERE email='" + email + "' and password='" + pass + "'`;
+  let query = conn.query(sql, function (err, myresults) {
+    if (err) throw err;
+    console.log(myresults.length);
+    if (myresults.length != 0) {
+      console.log("in panel if")
+      res.cookie('email', email);
+      res.cookie('password', pass);
+      let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+      inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+      inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+      let query = conn.query(sql, function (err, myresults) {
+        if (err) throw err;
+        res.render(__dirname + '/homepage', {
+          results: myresults
+        });
+      });
+    }
+    else {
+      console.log("in panel else")
+      res.send("Invalid email password");
+    }
+  });
+});
 app.get('/addproduct', function (req, res) {
   let sql = "SELECT * FROM producttype";
   let query = conn.query(sql, function (err, myresults) {
