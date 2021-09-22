@@ -836,8 +836,10 @@ app.post('/editproducttype', function (req, res) {
 
 app.get('/orderdetails', function (req, res) {
   orderid = req.query.orderid;
-
-  let sql = "SELECT * FROM orderdetails WHERE orderid=" + orderid;
+console.log("req.query.orderid",req.query.orderid)
+  let sql = `select c.id as cartId, c.status as status, p.productimgurl as pImg, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from homedecor.cart as c inner join homedecor.products as p on p.productid = c.productid 
+  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  where p.productId=${orderid} group by c.productId`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
 
@@ -879,7 +881,7 @@ app.get('/viewproduct', function (req, res) {
 });
 
 app.get('/viewcustomer', function (req, res) {
-  let sql = "SELECT * FROM users";
+  let sql = "SELECT * FROM users where userType='user'";
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     res.render(__dirname + '/viewcustomer.ejs', {
