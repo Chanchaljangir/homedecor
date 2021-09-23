@@ -19,7 +19,7 @@ const conn = mysql.createConnection({
 
   multipleStatements: true
 });
-  // = 'mysql2://bee84509a5be06:2c64400e@us-cdbr-east-04.cleardb.com/heroku_33b8d0224396eba?reconnect=true'
+// = 'mysql2://bee84509a5be06:2c64400e@us-cdbr-east-04.cleardb.com/heroku_33b8d0224396eba?reconnect=true'
 
 /*const conn = mysql.createConnection({
   host: 'tvcpw8tpu4jvgnnq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
@@ -77,9 +77,9 @@ app.post("/submitproduct", function (req, res, next) {
       sql = "insert into products values(DEFAULT,'" + req.body.category + "','" + req.body.producttype + "','" + imgurl + "','" + req.body.price + "','" + req.body.company + "','" + req.body.size + "','" + req.body.isnewarrival + "')";
       let query = conn.query(sql, function (err, myresults) {
         if (err) throw err;
-        let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+        let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid`;
         let query = conn.query(sql, function (err, myresults) {
           if (err) throw err;
           res.render(__dirname + '/viewproduct.ejs', {
@@ -125,8 +125,8 @@ app.get('/signhome', function (req, res) {
 app.get('/myorder', function (req, res) {
   var userEmail = req.cookies.email
   // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
-  let sql = `select c.id as cartId, p.productimgurl as pImg, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from homedecor.cart as c inner join homedecor.products as p on p.productid = c.productid 
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  let sql = `select c.id as cartId, p.productimgurl as pImg, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from cart as c inner join products as p on p.productid = c.productid 
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
   where isOrderd=true 
   And userEmail="${userEmail}"
    group by c.productId`;
@@ -180,9 +180,9 @@ app.get('/back', function (req, res) {
 
 app.get('/newarrival', function (req, res) {
   var userEmail = req.cookies.email
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where isnewarrival =  true`;
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid where isnewarrival =  true`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -204,9 +204,9 @@ app.get('/newarrival', function (req, res) {
 
 app.get('/bdouble', function (req, res) {
   var userEmail = req.cookies.email
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Double"`;
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Double"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -223,9 +223,9 @@ app.get('/bdouble', function (req, res) {
 });
 app.get('/bsmall', function (req, res) {
   var userEmail = req.cookies.email
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Small"`;
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Small"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -242,9 +242,9 @@ app.get('/bsmall', function (req, res) {
 });
 app.get('/curtains', function (req, res) {
   var userEmail = req.cookies.email
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="curtain"`;
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid where producttypename="curtain"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -261,9 +261,9 @@ app.get('/curtains', function (req, res) {
 });
 app.get('/ddouble', function (req, res) {
   var userEmail = req.cookies.email
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="duver" AND sizename="Double"`;
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid where producttypename="duver" AND sizename="Double"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -281,9 +281,9 @@ app.get('/ddouble', function (req, res) {
 app.get('/dsmall', function (req, res) {
   var userEmail = req.cookies.email
   console.log("userEmail dsamll", userEmail);
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="duver" AND sizename="Small"`;
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid where producttypename="duver" AND sizename="Small"`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -319,9 +319,9 @@ app.get('/dsmall', function (req, res) {
 // });
 app.get('/clock', function (req, res) {
   var userEmail = req.cookies.email
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Clock" AND (sizename="Small" OR sizename="Double")`;
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Clock" AND (sizename="Small" OR sizename="Double")`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -338,9 +338,9 @@ app.get('/clock', function (req, res) {
 });
 app.get('/mirrors', function (req, res) {
   var userEmail = req.cookies.email
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Mirrors" AND (sizename="Small" OR sizename="Double")`;
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Mirrors" AND (sizename="Small" OR sizename="Double")`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -357,9 +357,9 @@ app.get('/mirrors', function (req, res) {
 });
 app.get('/candles', function (req, res) {
   var userEmail = req.cookies.email
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Candles" AND (sizename="Small" OR sizename="Double")`;
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid where producttypename="Candles" AND (sizename="Small" OR sizename="Double")`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     if (userEmail == "" || userEmail == undefined) {
@@ -408,9 +408,9 @@ app.get('/btnsignin', function (req, res) {
       console.log("in panel if")
       res.cookie('email', email);
       res.cookie('password', pass);
-      let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-      inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-      inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+      let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+      inner join producttype as pt on pt.producttypeid=p.producttypeid
+      inner join sizemaster as sm on sm.sizeid=p.sizeid`;
       let query = conn.query(sql, function (err, myresults) {
         if (err) throw err;
         res.render(__dirname + '/afterSignIn', {
@@ -476,8 +476,8 @@ app.get("/viewCart", function (req, res, next) {
   console.log("req.body######## ", req.cookies.email);
   var userEmail = req.cookies.email
   // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
-  let sql = `select c.id as cartId, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from homedecor.cart as c inner join homedecor.products as p on p.productid = c.productid 
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  let sql = `select c.id as cartId, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from cart as c inner join products as p on p.productid = c.productid 
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
   where isOrderd=false 
   And userEmail="${userEmail}"
    group by c.productId`;
@@ -520,8 +520,8 @@ app.get("/viewCheckout", function (req, res, next) {
   console.log("req.body######## ", req.cookies.email);
   var userEmail = req.cookies.email
   // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
-  let sql = `select c.id as cartId, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from homedecor.cart as c inner join homedecor.products as p on p.productid = c.productid 
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  let sql = `select c.id as cartId, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from cart as c inner join products as p on p.productid = c.productid 
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
   where isOrderd=false 
   And userEmail="${userEmail}"
    group by c.productId`;
@@ -714,9 +714,9 @@ app.get('/btnAdminsignin', function (req, res) {
       console.log("in panel if")
       res.cookie('email', email);
       res.cookie('password', pass);
-      let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-      inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-      inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+      let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+      inner join producttype as pt on pt.producttypeid=p.producttypeid
+      inner join sizemaster as sm on sm.sizeid=p.sizeid`;
       let query = conn.query(sql, function (err, myresults) {
         if (err) throw err;
         res.render(__dirname + '/homepage', {
@@ -836,9 +836,9 @@ app.post('/editproducttype', function (req, res) {
 
 app.get('/orderdetails', function (req, res) {
   orderid = req.query.orderid;
-console.log("req.query.orderid",req.query.orderid)
-  let sql = `select c.id as cartId, c.status as status, p.productimgurl as pImg, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from homedecor.cart as c inner join homedecor.products as p on p.productid = c.productid 
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  console.log("req.query.orderid", req.query.orderid)
+  let sql = `select c.id as cartId, c.status as status, p.productimgurl as pImg, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from cart as c inner join products as p on p.productid = c.productid 
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
   where p.productId=${orderid} group by c.productId`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
@@ -867,9 +867,9 @@ app.get('/orderdetails2', function (req, res) {
 });*/
 
 app.get('/viewproduct', function (req, res) {
-  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+  let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid`;
   let query = conn.query(sql, function (err, myresults) {
     if (err) throw err;
     res.render(__dirname + '/viewproduct.ejs', {
@@ -894,8 +894,8 @@ app.get('/viewcustomer', function (req, res) {
 app.get('/vieworder', function (req, res) {
   var userEmail = req.cookies.email
   // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
-  let sql = `select c.id as cartId, c.status as status, p.productimgurl as pImg, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from homedecor.cart as c inner join homedecor.products as p on p.productid = c.productid 
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+  let sql = `select c.id as cartId, c.status as status, p.productimgurl as pImg, p.productid as productId, pt.producttypename, sum(c.price) as ptotal, p.brand, c.price, c.userEmail, count(c.productId) as Quantity from cart as c inner join products as p on p.productid = c.productid 
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
   where isOrderd=true group by c.productId`;
   let query = conn.query(sql, function (err, myresults) {
     let query = conn.query(sql, function (err, myresults) {
@@ -920,9 +920,9 @@ app.get('/deleteproduct', function (req, res) {
       throw err
     }
     else {
-      let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-  inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-  inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+      let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+  inner join producttype as pt on pt.producttypeid=p.producttypeid
+  inner join sizemaster as sm on sm.sizeid=p.sizeid`;
       let query = conn.query(sql, function (err, myresults) {
         if (err) throw err;
         res.render(__dirname + '/viewproduct.ejs', {
