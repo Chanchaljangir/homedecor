@@ -11,20 +11,14 @@ const port = process.env.PORT || 3000
 const mysql = require('mysql2');
 imgurl = "";
 var cookieParser = require('cookie-parser');
-// const conn = mysql.createConnection({
-//   host: 'us-cdbr-east-04.cleardb.com',
-//   user: 'bee84509a5be06',
-//   password: '2c64400e',
-//   database: 'heroku_33b8d0224396eba',
-//   port: 3306,
-//   multipleStatements: true
-// });
-const conn = mysql.createPool({
+const conn = mysql.createConnection({
   host: 'us-cdbr-east-04.cleardb.com',
   user: 'bee84509a5be06',
   password: '2c64400e',
-  database: 'heroku_33b8d0224396eba'
+  database: 'heroku_33b8d0224396eba',
+  multipleStatements: true
 });
+
 // = 'mysql2://bee84509a5be06:2c64400e@us-cdbr-east-04.cleardb.com/heroku_33b8d0224396eba?reconnect=true'
 
 /*const conn = mysql.createConnection({
