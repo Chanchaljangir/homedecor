@@ -208,7 +208,11 @@ app.get('/bdouble', function (req, res) {
   inner join producttype as pt on pt.producttypeid=p.producttypeid
   inner join sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Double"`;
   let query = conn.query(sql, function (err, myresults) {
-    if (err) throw err;
+    if (err)
+    {
+      console.log("bdouble err..",err)
+      throw err;
+    } 
     if (userEmail == "" || userEmail == undefined) {
       res.render(__dirname + '/curtain', {
         results: myresults
