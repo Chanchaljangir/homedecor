@@ -14,7 +14,7 @@ var cookieParser = require('cookie-parser');
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '123456',
+  password: '',
   database: 'homedecor',
 
   // multipleStatements: true
