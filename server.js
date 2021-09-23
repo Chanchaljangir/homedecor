@@ -16,21 +16,9 @@ const conn = mysql.createConnection({
   user: 'bee84509a5be06',
   password: '2c64400e',
   database: 'heroku_33b8d0224396eba',
-  port: '3306',
+  port: 3306,
   multipleStatements: true
 });
-
-// const conn = mysql.createConnection('mysql2://bee84509a5be06:2c64400e@us-cdbr-east-04.cleardb.com/heroku_33b8d0224396eba?reconnect=true');
-conn.connect(function (err) {
-  if (err) {
-      console.log(`connectionRequest Failed ${err.stack}`)
-  } else {
-      console.log(`DB connectionRequest Successful ${connection.threadId}`)
-  }
-});
-
-//return connection object
-return conn
 
 // = 'mysql2://bee84509a5be06:2c64400e@us-cdbr-east-04.cleardb.com/heroku_33b8d0224396eba?reconnect=true'
 
