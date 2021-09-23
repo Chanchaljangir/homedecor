@@ -19,6 +19,19 @@ const conn = mysql.createConnection({
 
   multipleStatements: true
 });
+
+const conn = mysql.createConnection('mysql2://bee84509a5be06:2c64400e@us-cdbr-east-04.cleardb.com/heroku_33b8d0224396eba?reconnect=true');
+conn.connect(function (err) {
+  if (err) {
+      console.log(`connectionRequest Failed ${err.stack}`)
+  } else {
+      console.log(`DB connectionRequest Successful ${connection.threadId}`)
+  }
+});
+
+//return connection object
+return conn
+
 // = 'mysql2://bee84509a5be06:2c64400e@us-cdbr-east-04.cleardb.com/heroku_33b8d0224396eba?reconnect=true'
 
 /*const conn = mysql.createConnection({
@@ -406,7 +419,10 @@ app.get('/btnsignin', function (req, res) {
   let sql = "SELECT * FROM users WHERE email='" + email + "' and password='" + pass + "' and userType='user'";
   // let sql = `SELECT * FROM users WHERE email='" + email + "' and password='" + pass + "'`;
   let query = conn.query(sql, function (err, myresults) {
-    if (err) throw err;
+    if (err){
+      console.log("btnsignin.... ",err);
+      throw err;
+    } 
     console.log(myresults.length);
     if (myresults.length != 0) {
       console.log("in panel if")
