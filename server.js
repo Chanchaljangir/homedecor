@@ -11,14 +11,27 @@ const port = process.env.PORT || 3000
 const mysql = require('mysql2');
 imgurl = "";
 var cookieParser = require('cookie-parser');
+// const conn = mysql.createConnection({
+//   host: 'us-cdbr-east-04.cleardb.com',
+//   user: 'bee84509a5be06',
+//   password: '2c64400e',
+//   database: 'heroku_33b8d0224396eba',
+//   multipleStatements: true
+// });
+
 const conn = mysql.createConnection({
-  host: 'us-cdbr-east-04.cleardb.com',
-  user: 'bee84509a5be06',
-  password: '2c64400e',
-  database: 'heroku_33b8d0224396eba',
+  host: '185.28.21.156',
+  user: 'u783938554_homedecor',
+  password: 'Homedecor@1',
+  database: 'u783938554_homedecor',
   multipleStatements: true
 });
 
+// [2:00 am, 24/09/2021] .: db name: u783938554_homedecor
+// [2:01 am, 24/09/2021] .: db usernae: u783938554_homedecor
+// [2:01 am, 24/09/2021] .: passwrod:  Homedecor@1
+// [2:03 am, 24/09/2021] .: 185.28.21.156
+// [2:08 am, 24/09/2021] .: 127.0.0.1:3306
 // = 'mysql2://bee84509a5be06:2c64400e@us-cdbr-east-04.cleardb.com/heroku_33b8d0224396eba?reconnect=true'
 
 /*const conn = mysql.createConnection({
@@ -580,7 +593,7 @@ app.post("/paymentGetway1", async function (req, res) {
     customerEmail: userEmail,
     customerName: "Chanchal",
     customerPhone: "97453657999",
-    returnUrl: 'http://localhost:3000/placedorder',
+    returnUrl: 'https://homedecorr.herokuapp.com/placedorder',
   }
   let url = 'https://test.cashfree.com/api/v1/order/create'
   await axios.post(url, qs.stringify(postData), {

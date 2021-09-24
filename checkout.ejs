@@ -209,7 +209,7 @@ h4{
                 "cartId": cid
             }
             $.ajax({
-                url: "http://localhost:3000/cartItemRemovee",
+                url: "https://homedecorr.herokuapp.com/cartItemRemovee",
                 enctype: 'application/json',
                 type: "POST",
                 // dataType:'json',
@@ -227,7 +227,7 @@ h4{
         getCartItems();
         function getCartItems() {
             $.ajax({
-                url: "http://localhost:3000/subtotalCartItem",
+                url: "https://homedecorr.herokuapp.com/subtotalCartItem",
                 enctype: 'application/json',
                 type: "GET",
             }).done(function (data) {
@@ -242,7 +242,7 @@ h4{
         getCartItemsIds();
         function getCartItemsIds() {
             $.ajax({
-                url: "http://localhost:3000/cartItemIds",
+                url: "https://homedecorr.herokuapp.com/cartItemIds",
                 enctype: 'application/json',
                 type: "GET",
             }).done(function (data) {
@@ -265,7 +265,7 @@ h4{
                 "price": totalPrice
             }
             $.ajax({
-                url: "http://localhost:3000/paymentGetway",
+                url: "https://homedecorr.herokuapp.com/paymentGetway",
                 enctype: 'application/json',
                 type: "POST",
                 // dataType:'json',
@@ -292,7 +292,7 @@ h4{
                 "price": price
             }
             $.ajax({
-                url: "http://localhost:3000/paymentGetway",
+                url: "https://homedecorr.herokuapp.com/paymentGetway",
                 enctype: 'application/json',
                 type: "POST",
                 // dataType:'json',
