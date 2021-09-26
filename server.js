@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000
 const mysql = require('mysql2');
 imgurl = "";
 var cookieParser = require('cookie-parser');
+const client = require('filestack-js').init('A6trCmzPeS9yQROd2U6qXz');
 // const conn = mysql.createConnection({
 //   host: 'us-cdbr-east-04.cleardb.com',
 //   user: 'bee84509a5be06',
@@ -20,6 +21,15 @@ var cookieParser = require('cookie-parser');
 // });
 
 
+
+// const conn = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: 'Chanchal',
+//   database: 'homedecor',
+
+//   multipleStatements: true
+// });
 
 var conn;
 
@@ -48,6 +58,10 @@ function handleDisconnect() {
   });
 }
 handleDisconnect();
+
+
+
+
 // = 'mysql2://bee84509a5be06:2c64400e@us-cdbr-east-04.cleardb.com/heroku_33b8d0224396eba?reconnect=true'
 
 /*const conn = mysql.createConnection({
@@ -79,13 +93,24 @@ var upload = multer({
   storage: storage,
   limits: { fileSize: maxSize },
   fileFilter: function (req, file, cb) {
+    console.log("file######## ", file);
+    // const options = {
+    //   uploadConfig: {
+    //       tags: {
+    //          "foo": "bar"
+    //       }
+    //     },
+    // };
 
     var filetypes = /jpeg|jpg|png/;
+    console.log("filetypes..... ", filetypes);
     var mimetype = filetypes.test(file.mimetype);
+    console.log("mimetypemimetype....", mimetype);
 
     var extname = filetypes.test(path.extname(
       file.originalname).toLowerCase());
 
+    console.log("extname.........", extname);
     if (mimetype && extname) {
       return cb(null, true);
     }
@@ -102,23 +127,35 @@ app.post("/submitproduct", function (req, res) {
       res.send(err)
     }
     else {
-      console.log("req.query.pid", req.body);
-      sql = "insert into products values(DEFAULT,'" + req.body.category + "','" + req.body.producttype + "','" + imgurl + "','" + req.body.price + "','" + req.body.company + "','" + req.body.size + "','" + req.body.isnewarrival + "')";
+      console.log("imgurl!!!!!!!!!!!!!!!! ", imgurl);
+      var makeurl = `./uploads/${imgurl}`;
+      console.log("makeurl .... ", makeurl)
+      client.upload(makeurl).then(
+        function (result) {
+          console.log("filestack result @@@@@@@@@ ", result);
+          console.log("filestack url $$$$$$$$$$$$$$$ ", result.url);
+          const filestackUrl = result.url;
+          console.log("req.query.pid", req.body);
+          sql = "insert into products values(DEFAULT,'" + req.body.category + "','" + req.body.producttype + "','" + filestackUrl + "','" + req.body.price + "','" + req.body.company + "','" + req.body.size + "','" + req.body.isnewarrival + "')";
 
-        let query = conn.query(sql, function (err, myresults) {
-          if (err) throw err;
-          let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
-    inner join producttype as pt on pt.producttypeid=p.producttypeid
-    inner join sizemaster as sm on sm.sizeid=p.sizeid`;
+          let query = conn.query(sql, function (err, myresults) {
+            if (err) throw err;
+            let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
+        inner join producttype as pt on pt.producttypeid=p.producttypeid
+        inner join sizemaster as sm on sm.sizeid=p.sizeid`;
             let query = conn.query(sql, function (err, myresults) {
               if (err) throw err;
               res.render(__dirname + '/viewproduct.ejs', {
                 results: myresults
               });
             });
-          // res.send("Success, Image uploaded!" + req.body.producttype);
-        });
-
+            // res.send("Success, Image uploaded!" + req.body.producttype);
+          });
+        },
+        function (error) {
+          console.log("filestack error @@@@@@@@@ ", error);
+        }
+      );
     }
   })
 })
@@ -158,12 +195,12 @@ app.get('/myorder', function (req, res) {
   where isOrderd=true 
   And userEmail="${userEmail}"
    group by c.productId`;
-    let query = conn.query(sql, function (err, myresults) {
-      if (err) throw err;
-      res.render(__dirname + '/orderid1', {
-        results: myresults
-      });
-    })
+  let query = conn.query(sql, function (err, myresults) {
+    if (err) throw err;
+    res.render(__dirname + '/orderid1', {
+      results: myresults
+    });
+  })
 
 });
 
@@ -210,19 +247,19 @@ app.get('/newarrival', function (req, res) {
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
   inner join producttype as pt on pt.producttypeid=p.producttypeid
   inner join sizemaster as sm on sm.sizeid=p.sizeid where isnewarrival =  true`;
-    let query = conn.query(sql, function (err, myresults) {
-      if (err) throw err;
-      if (userEmail == "" || userEmail == undefined) {
-        res.render(__dirname + '/newarrivals', {
-          results: myresults
-        });
-      }
-      else {
-        res.render(__dirname + '/sigInNewarrivals', {
-          results: myresults
-        });
-      }
-    });
+  let query = conn.query(sql, function (err, myresults) {
+    if (err) throw err;
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/newarrivals', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/sigInNewarrivals', {
+        results: myresults
+      });
+    }
+  });
 });
 
 /*app.get('/home',function(req,res){
@@ -234,22 +271,22 @@ app.get('/bdouble', function (req, res) {
   let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM products as p inner join category as c on c.categoryid=p.categoryid
   inner join producttype as pt on pt.producttypeid=p.producttypeid
   inner join sizemaster as sm on sm.sizeid=p.sizeid where producttypename="bedsheet" AND sizename="Double"`;
-    let query = conn.query(sql, function (err, myresults) {
-      if (err) {
-        console.log("bdouble err..", err)
-        throw err;
-      }
-      if (userEmail == "" || userEmail == undefined) {
-        res.render(__dirname + '/curtain', {
-          results: myresults
-        });
-      }
-      else {
-        res.render(__dirname + '/afterSignInCurtain', {
-          results: myresults
-        });
-      }
-    });
+  let query = conn.query(sql, function (err, myresults) {
+    if (err) {
+      console.log("bdouble err..", err)
+      throw err;
+    }
+    if (userEmail == "" || userEmail == undefined) {
+      res.render(__dirname + '/curtain', {
+        results: myresults
+      });
+    }
+    else {
+      res.render(__dirname + '/afterSignInCurtain', {
+        results: myresults
+      });
+    }
+  });
 });
 app.get('/bsmall', function (req, res) {
   var userEmail = req.cookies.email
@@ -488,27 +525,26 @@ app.post("/addTocart", function (req, res) {
   // let data = { productId: req.body.productId, price: req.body.productCost, isOrderd: false };
   let sql = `INSERT INTO cart SET productId = ${req.body.productId}, price = ${req.body.productCost}, isOrderd=false, userEmail='${userEmail}', status="pending"`;
 
-    let query = conn.query(sql, function (err, myresults) {
-      if (err)
-      {
-        console.log("addToChart err..... ",err)
-        throw err;
-      } 
-      else {
-        console.log("addtoCart send msg.....")
-        res.send("Success add in cart");
-      }
-      //     let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
-      // inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
-      // inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
-      //     let query = conn.query(sql, function (err, myresults) {
-      //       if (err) throw err;
-      //       res.render(__dirname + '/viewproduct.ejs', {
-      //         results: myresults
-      // });
-      // });
-      // res.send("Success, Image uploaded!" + req.body.producttype);
-    });
+  let query = conn.query(sql, function (err, myresults) {
+    if (err) {
+      console.log("addToChart err..... ", err)
+      throw err;
+    }
+    else {
+      console.log("addtoCart send msg.....")
+      res.send("Success add in cart");
+    }
+    //     let sql = `SELECT productid,c.categoryname, pt.producttypename,sm.sizename,productimgurl,price,brand,isnewarrival FROM homedecor.products as p inner join homedecor.category as c on c.categoryid=p.categoryid
+    // inner join homedecor.producttype as pt on pt.producttypeid=p.producttypeid
+    // inner join homedecor.sizemaster as sm on sm.sizeid=p.sizeid`;
+    //     let query = conn.query(sql, function (err, myresults) {
+    //       if (err) throw err;
+    //       res.render(__dirname + '/viewproduct.ejs', {
+    //         results: myresults
+    // });
+    // });
+    // res.send("Success, Image uploaded!" + req.body.producttype);
+  });
 
 })
 // add to cart old END
@@ -801,14 +837,27 @@ app.post('/editproduct', function (req, res) {
       res.send(err)
     }
     else {
-      console.log("req.query.pid", req.body);
-      sql = `update products set categoryid = ${req.body.category},producttypeid=${req.body.producttype}, price=${req.body.price},brand='${req.body.company}', sizeid=${req.body.size} , productimgurl = '${imgurl}' where productid = ${req.query.pid} `;
-      let query = conn.query(sql, function (err, myresults) {
-        if (err) throw err;
+      var makeurl = `./uploads/${imgurl}`;
+      console.log("makeurl .... ", makeurl)
+      client.upload(makeurl).then(
+        function (result) {
+          console.log("filestack result @@@@@@@@@ ", result);
+          console.log("filestack url $$$$$$$$$$$$$$$ ", result.url);
+          const filestackUrl = result.url;
+          console.log("req.query.pid", req.body);
+          sql = `update products set categoryid = ${req.body.category},producttypeid=${req.body.producttype}, price=${req.body.price},brand='${req.body.company}', sizeid=${req.body.size} , productimgurl = '${filestackUrl}' where productid = ${req.query.pid} `;
+          let query = conn.query(sql, function (err, myresults) {
+            if (err) throw err;
 
-        // res.send("Success, updated!" + req.body.producttype);
-        res.redirect("viewproduct");
-      });
+            // res.send("Success, updated!" + req.body.producttype);
+            res.redirect("viewproduct");
+          });
+        },
+        function (error) {
+          console.log("filestack error @@@@@@@@@ ", error);
+        }
+      );
+
     }
   })
 });
