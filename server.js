@@ -795,7 +795,7 @@ app.get('/btnAdminsignin', function (req, res) {
       inner join sizemaster as sm on sm.sizeid=p.sizeid`;
       let query = conn.query(sql, function (err, myresults) {
         if (err) throw err;
-        res.render(__dirname + '/homepage', {
+        res.render(__dirname + '/viewproduct', {
           results: myresults
         });
       });

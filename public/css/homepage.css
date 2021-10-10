@@ -9,7 +9,7 @@ body{
 header nav {
     padding: 1.5rem 0; 
     text-align: center;
-    
+  
 }
 nav{
     width: 100%;
@@ -97,11 +97,44 @@ nav .submenu{
     display: inline-block;
     padding: 15px;
     box-sizing: border-box;
-    border: 3px double;
+   
 }
 .box-in {
     text-align: center;
     color: black;
+    box-shadow: 0 0 12px 3px #eee;
+    background: #f7f7f7;
+    padding-bottom: 13px;
+}
+.contact.us {
+    background: #f12a2a;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    flex-wrap: wrap;
+
+}
+.contact.us a{
+  width: 33.33%;
+}
+.contact.us a:nth-child(1){
+    text-align: right;
+  }
+  .contact.us a:nth-child(2){
+    text-align: center;
+  }
+  .contact.us i {
+    width: calc(50% - 20px);
+    margin: 10px;
+}
+.contact.us i.fa.fa-facebook.fa-2x {
+   text-align: right;
+}
+.box-in h3 {
+    padding: 0 0 20px;
+}
+.box-in h4 {
+    margin: 0;
 }
 .box-in a{
     text-decoration: none;
@@ -125,7 +158,18 @@ nav .submenu{
     top: 50%;
     transform: translate(-50%, -50%);
 }
-
+.modal {
+    border: 0!important;
+    padding: 20px!important;
+    box-shadow: 0 0 12px 0px #e8e8e8!important;
+    background: #fff!important;
+}
+.modal a {
+    color: green;
+    /* text-decoration: none; */
+    padding: 8px;
+    font-size: 13px;
+}
 button[id=closebtn],button[name=btnregsubmit],
 input[name=btnsignin] {
     background-color: #04AA6D;
@@ -135,6 +179,10 @@ input[name=btnsignin] {
     border: none;
     cursor: pointer;
     width: 40%;
+}
+.btn {
+    background: #f12a2a!important;
+    width: calc(100% - 24px)!important;
 }
 
 .nm-tag{
@@ -146,4 +194,27 @@ input[name=btnsignin] {
     color: #fff;
     margin-top: 10px;
     display: inline-block;
+}
+.table h2 {
+    color: #000!important;
+    font-weight: bold;
+}
+table th {
+    background: #f12a2a;
+    color: #fff;
+    font-weight: normal;
+    border-color: #fff;
+    padding: 10px 10px;
+}
+button.edit, button.delete{
+    background: #dddddd;
+    border: 0!important;padding: 5px;
+    border: 1px solid #404040;
+    border-radius: 3px;
+}
+table tr:nth-child(even) {
+    background-color: #f8f9fd!important;
+}
+table td{
+    padding: 10px;
 }
