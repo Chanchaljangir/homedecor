@@ -112,7 +112,7 @@ nav .submenu{
     align-items: center;
     padding: 20px;
     flex-wrap: wrap;
-
+    margin-top: 40px;
 }
 .contact.us a{
   width: 33.33%;
@@ -183,6 +183,7 @@ input[name=btnsignin] {
 .btn {
     background: #f12a2a!important;
     width: calc(100% - 24px)!important;
+    border: 0;
 }
 
 .nm-tag{
@@ -217,4 +218,22 @@ table tr:nth-child(even) {
 }
 table td{
     padding: 10px;
+}
+button.mybtn,.mybutton {
+    background: #fff;
+    border: 1px solid rgb(1, 152, 122);
+    border-radius: 3px;
+    color: rgb(1, 152, 122);
+}
+button.mybtn:hover, .mybutton:hover{
+    background: #fff;
+    border: 1px solid rgb(1, 152, 122);
+    border-radius: 3px;
+    color: rgb(1, 152, 122);
+}
+button{
+    cursor: pointer;
+}
+@media(max-width:767px){
+    .box-4col {padding: 20px;}
 }
