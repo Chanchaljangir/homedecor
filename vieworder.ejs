@@ -50,10 +50,10 @@
                         <td>
                             <%=rs.ptotal %>
                         </td>
-                        <td><select class="option" name="changestatus" id="sChangeId"
-                                onchange='return changeStatus("<%=rs.cartId %>")'>
-                                <option disabled="disabled" selected="selected">--Choose option--</option>
-                                <option value="pending">Panding</option>
+                        <td><select class="option" name="changestatus" id="sChangeId<%=rs.cartId %>"
+                                onchange='changeStatusFun("<%=rs.cartId %>")'>
+                                <option disabled="disabled" selected>--Choose option--</option>
+                                <option value="pending">Pending</option>
                                 <option value="cancel">Cancel</option>
                                 <option value="delivered">Delivered</option>
                             </select>
@@ -65,9 +65,9 @@
         </table>
     </div>
     <script type="text/javascript">
-        function changeStatus(st) {
-            var e = document.getElementById("sChangeId");
-            var schange = e.value;
+        function changeStatusFun(st) {
+            var e = document.getElementById("sChangeId"+st).value;
+             var schange = e;
             console.log(st, schange);
             var data1 = {
                 "cartId": st,

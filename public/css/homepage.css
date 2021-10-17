@@ -5,6 +5,12 @@ body{
     background-image: url(img3.png);
 
 }
+.logo {
+    color: #ffd26dd4;
+    font-size: 26px;
+    position: relative;
+    left: -40px;
+}
 
 header nav {
     padding: 1.5rem 0; 
